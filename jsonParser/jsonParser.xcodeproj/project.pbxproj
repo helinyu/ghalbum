@@ -1,0 +1,868 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04332A2720C7C96C008885B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04332A2620C7C96C008885B9 /* AppDelegate.m */; };
+		04332A2A20C7C96C008885B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04332A2920C7C96C008885B9 /* ViewController.m */; };
+		04332A2D20C7C96C008885B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332A2B20C7C96C008885B9 /* Main.storyboard */; };
+		04332A2F20C7C96C008885B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04332A2E20C7C96C008885B9 /* Assets.xcassets */; };
+		04332A3220C7C96C008885B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04332A3020C7C96C008885B9 /* LaunchScreen.storyboard */; };
+		04332A3520C7C96C008885B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04332A3420C7C96C008885B9 /* main.m */; };
+		04332A3F20C7C96C008885B9 /* jsonParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04332A3E20C7C96C008885B9 /* jsonParserTests.m */; };
+		04332A4A20C7C96C008885B9 /* jsonParserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04332A4920C7C96C008885B9 /* jsonParserUITests.m */; };
+		04332A5820C7CA4A008885B9 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 04332A5720C7CA4A008885B9 /* test.json */; };
+		04882A5F20D1239200E0E762 /* YDCommonImgBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A5E20D1239200E0E762 /* YDCommonImgBrowser.m */; };
+		04882A6420D1241000E0E762 /* YDPhotoTakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A6020D1240F00E0E762 /* YDPhotoTakeViewController.m */; };
+		04882A6520D1241000E0E762 /* YDImgPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A6220D1241000E0E762 /* YDImgPickerViewController.m */; };
+		04882A6820D124DF00E0E762 /* YDCommonImgBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A6720D124DF00E0E762 /* YDCommonImgBrowserView.m */; };
+		04882A6B20D1253000E0E762 /* YDPreviewBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A6920D1253000E0E762 /* YDPreviewBottomView.m */; };
+		04882A6E20D1255F00E0E762 /* YDLeftRightBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A6D20D1255F00E0E762 /* YDLeftRightBtnView.m */; };
+		04882A7720D128AF00E0E762 /* YDImgBrowserCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A7520D128AF00E0E762 /* YDImgBrowserCCell.m */; };
+		04882A7A20D128CD00E0E762 /* YDImgZoomCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A7920D128CD00E0E762 /* YDImgZoomCCell.m */; };
+		04882A8120D1293400E0E762 /* YDBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A7C20D1293300E0E762 /* YDBaseCollectionViewCell.m */; };
+		04882A8220D1293400E0E762 /* YDBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A7D20D1293300E0E762 /* YDBaseTableViewCell.m */; };
+		04882A8320D1293400E0E762 /* YDBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A7E20D1293300E0E762 /* YDBaseView.m */; };
+		04882A8620D12BE300E0E762 /* YDObtainManagerMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A8420D12BE200E0E762 /* YDObtainManagerMgr.m */; };
+		04882A8920D12D4700E0E762 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A8820D12D4700E0E762 /* UIView+YYAdd.m */; };
+		04882A8D20D12EC800E0E762 /* YDBrowserImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A8B20D12EC700E0E762 /* YDBrowserImgModel.m */; };
+		04882A9020D12FB600E0E762 /* YDPhotoTakenBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A8F20D12FB600E0E762 /* YDPhotoTakenBottomView.m */; };
+		04882A9320D12FCF00E0E762 /* YDPhotoTakenContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A9220D12FCF00E0E762 /* YDPhotoTakenContentView.m */; };
+		04882A9620D12FF000E0E762 /* YDPhotoTakenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A9420D12FF000E0E762 /* YDPhotoTakenView.m */; };
+		04882A9920D1303700E0E762 /* YDPhotoHasTakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A9820D1303700E0E762 /* YDPhotoHasTakeView.m */; };
+		04882A9C20D1314600E0E762 /* YDImgPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A9B20D1314500E0E762 /* YDImgPickerView.m */; };
+		04882A9F20D1318E00E0E762 /* YDImgPickerCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882A9E20D1318E00E0E762 /* YDImgPickerCCell.m */; };
+		04882AA220D131BB00E0E762 /* YDPickerBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AA120D131BB00E0E762 /* YDPickerBottomView.m */; };
+		04882AA520D131E400E0E762 /* YDImgIconCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AA320D131E300E0E762 /* YDImgIconCCell.m */; };
+		04882AA820D131FD00E0E762 /* YDSingleImgCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AA620D131FD00E0E762 /* YDSingleImgCCell.m */; };
+		04882AAB20D132CD00E0E762 /* YDImgPickerTakeCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AA920D132CC00E0E762 /* YDImgPickerTakeCCell.m */; };
+		04882AAE20D132E600E0E762 /* YDComImgDescCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AAD20D132E500E0E762 /* YDComImgDescCCell.m */; };
+		04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB020D1334E00E0E762 /* YDImgPickerVCTitleView.m */; };
+		04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB220D1336800E0E762 /* YDAlbumTCell.m */; };
+		04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */; };
+		9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */; };
+		A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */; };
+		B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04332A3B20C7C96C008885B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04332A1A20C7C96C008885B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04332A2120C7C96C008885B9;
+			remoteInfo = jsonParser;
+		};
+		04332A4620C7C96C008885B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04332A1A20C7C96C008885B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04332A2120C7C96C008885B9;
+			remoteInfo = jsonParser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04332A2220C7C96C008885B9 /* jsonParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jsonParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04332A2520C7C96C008885B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		04332A2620C7C96C008885B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		04332A2820C7C96C008885B9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		04332A2920C7C96C008885B9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		04332A2C20C7C96C008885B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04332A2E20C7C96C008885B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04332A3120C7C96C008885B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04332A3320C7C96C008885B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04332A3420C7C96C008885B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		04332A3A20C7C96C008885B9 /* jsonParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsonParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04332A3E20C7C96C008885B9 /* jsonParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jsonParserTests.m; sourceTree = "<group>"; };
+		04332A4020C7C96C008885B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04332A4520C7C96C008885B9 /* jsonParserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsonParserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04332A4920C7C96C008885B9 /* jsonParserUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jsonParserUITests.m; sourceTree = "<group>"; };
+		04332A4B20C7C96C008885B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04332A5720C7CA4A008885B9 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		04882A5D20D1239200E0E762 /* YDCommonImgBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDCommonImgBrowser.h; sourceTree = "<group>"; };
+		04882A5E20D1239200E0E762 /* YDCommonImgBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDCommonImgBrowser.m; sourceTree = "<group>"; };
+		04882A6020D1240F00E0E762 /* YDPhotoTakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPhotoTakeViewController.m; sourceTree = "<group>"; };
+		04882A6120D1241000E0E762 /* YDImgPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgPickerViewController.h; sourceTree = "<group>"; };
+		04882A6220D1241000E0E762 /* YDImgPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgPickerViewController.m; sourceTree = "<group>"; };
+		04882A6320D1241000E0E762 /* YDPhotoTakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPhotoTakeViewController.h; sourceTree = "<group>"; };
+		04882A6620D124DF00E0E762 /* YDCommonImgBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDCommonImgBrowserView.h; sourceTree = "<group>"; };
+		04882A6720D124DF00E0E762 /* YDCommonImgBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDCommonImgBrowserView.m; sourceTree = "<group>"; };
+		04882A6920D1253000E0E762 /* YDPreviewBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPreviewBottomView.m; sourceTree = "<group>"; };
+		04882A6A20D1253000E0E762 /* YDPreviewBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPreviewBottomView.h; sourceTree = "<group>"; };
+		04882A6C20D1255F00E0E762 /* YDLeftRightBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDLeftRightBtnView.h; sourceTree = "<group>"; };
+		04882A6D20D1255F00E0E762 /* YDLeftRightBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDLeftRightBtnView.m; sourceTree = "<group>"; };
+		04882A7420D1271700E0E762 /* GHIDefine.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHIDefine.pch; sourceTree = "<group>"; };
+		04882A7520D128AF00E0E762 /* YDImgBrowserCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgBrowserCCell.m; sourceTree = "<group>"; };
+		04882A7620D128AF00E0E762 /* YDImgBrowserCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgBrowserCCell.h; sourceTree = "<group>"; };
+		04882A7820D128CD00E0E762 /* YDImgZoomCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgZoomCCell.h; sourceTree = "<group>"; };
+		04882A7920D128CD00E0E762 /* YDImgZoomCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgZoomCCell.m; sourceTree = "<group>"; };
+		04882A7B20D1293300E0E762 /* YDBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDBaseView.h; sourceTree = "<group>"; };
+		04882A7C20D1293300E0E762 /* YDBaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		04882A7D20D1293300E0E762 /* YDBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDBaseTableViewCell.m; sourceTree = "<group>"; };
+		04882A7E20D1293300E0E762 /* YDBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDBaseView.m; sourceTree = "<group>"; };
+		04882A7F20D1293300E0E762 /* YDBaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDBaseCollectionViewCell.h; sourceTree = "<group>"; };
+		04882A8020D1293400E0E762 /* YDBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDBaseTableViewCell.h; sourceTree = "<group>"; };
+		04882A8420D12BE200E0E762 /* YDObtainManagerMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDObtainManagerMgr.m; sourceTree = "<group>"; };
+		04882A8520D12BE300E0E762 /* YDObtainManagerMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDObtainManagerMgr.h; sourceTree = "<group>"; };
+		04882A8720D12D4700E0E762 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
+		04882A8820D12D4700E0E762 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
+		04882A8A20D12D8200E0E762 /* YYKitMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKitMacro.h; sourceTree = "<group>"; };
+		04882A8B20D12EC700E0E762 /* YDBrowserImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDBrowserImgModel.m; sourceTree = "<group>"; };
+		04882A8C20D12EC800E0E762 /* YDBrowserImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDBrowserImgModel.h; sourceTree = "<group>"; };
+		04882A8E20D12FB500E0E762 /* YDPhotoTakenBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPhotoTakenBottomView.h; sourceTree = "<group>"; };
+		04882A8F20D12FB600E0E762 /* YDPhotoTakenBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPhotoTakenBottomView.m; sourceTree = "<group>"; };
+		04882A9120D12FCF00E0E762 /* YDPhotoTakenContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPhotoTakenContentView.h; sourceTree = "<group>"; };
+		04882A9220D12FCF00E0E762 /* YDPhotoTakenContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPhotoTakenContentView.m; sourceTree = "<group>"; };
+		04882A9420D12FF000E0E762 /* YDPhotoTakenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPhotoTakenView.m; sourceTree = "<group>"; };
+		04882A9520D12FF000E0E762 /* YDPhotoTakenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPhotoTakenView.h; sourceTree = "<group>"; };
+		04882A9720D1303600E0E762 /* YDPhotoHasTakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPhotoHasTakeView.h; sourceTree = "<group>"; };
+		04882A9820D1303700E0E762 /* YDPhotoHasTakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPhotoHasTakeView.m; sourceTree = "<group>"; };
+		04882A9A20D1314500E0E762 /* YDImgPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgPickerView.h; sourceTree = "<group>"; };
+		04882A9B20D1314500E0E762 /* YDImgPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgPickerView.m; sourceTree = "<group>"; };
+		04882A9D20D1318D00E0E762 /* YDImgPickerCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgPickerCCell.h; sourceTree = "<group>"; };
+		04882A9E20D1318E00E0E762 /* YDImgPickerCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgPickerCCell.m; sourceTree = "<group>"; };
+		04882AA020D131BB00E0E762 /* YDPickerBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDPickerBottomView.h; sourceTree = "<group>"; };
+		04882AA120D131BB00E0E762 /* YDPickerBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDPickerBottomView.m; sourceTree = "<group>"; };
+		04882AA320D131E300E0E762 /* YDImgIconCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgIconCCell.m; sourceTree = "<group>"; };
+		04882AA420D131E300E0E762 /* YDImgIconCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgIconCCell.h; sourceTree = "<group>"; };
+		04882AA620D131FD00E0E762 /* YDSingleImgCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDSingleImgCCell.m; sourceTree = "<group>"; };
+		04882AA720D131FD00E0E762 /* YDSingleImgCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDSingleImgCCell.h; sourceTree = "<group>"; };
+		04882AA920D132CC00E0E762 /* YDImgPickerTakeCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgPickerTakeCCell.m; sourceTree = "<group>"; };
+		04882AAA20D132CD00E0E762 /* YDImgPickerTakeCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgPickerTakeCCell.h; sourceTree = "<group>"; };
+		04882AAC20D132E300E0E762 /* YDComImgDescCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDComImgDescCCell.h; sourceTree = "<group>"; };
+		04882AAD20D132E500E0E762 /* YDComImgDescCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDComImgDescCCell.m; sourceTree = "<group>"; };
+		04882AAF20D1334D00E0E762 /* YDImgPickerVCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgPickerVCTitleView.h; sourceTree = "<group>"; };
+		04882AB020D1334E00E0E762 /* YDImgPickerVCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgPickerVCTitleView.m; sourceTree = "<group>"; };
+		04882AB220D1336800E0E762 /* YDAlbumTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDAlbumTCell.m; sourceTree = "<group>"; };
+		04882AB320D1336800E0E762 /* YDAlbumTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDAlbumTCell.h; sourceTree = "<group>"; };
+		04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgTitleIconTCell.h; sourceTree = "<group>"; };
+		04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgTitleIconTCell.m; sourceTree = "<group>"; };
+		1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38E12EEAD2874F6BBC8457B0 /* Pods-jsonParserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserTests/Pods-jsonParserTests.debug.xcconfig"; sourceTree = "<group>"; };
+		59B006C88ED1E52FB04D840C /* Pods-jsonParser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParser.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser.release.xcconfig"; sourceTree = "<group>"; };
+		99662F2EEDC9CC1B2644CE52 /* Pods-jsonParserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserTests/Pods-jsonParserTests.release.xcconfig"; sourceTree = "<group>"; };
+		CAD51FC90D7A1E46517BBE82 /* Pods-jsonParserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EAB03A0DC8049DB087F18917 /* Pods-jsonParser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser.debug.xcconfig"; sourceTree = "<group>"; };
+		FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04332A1F20C7C96C008885B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A3720C7C96C008885B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A4220C7C96C008885B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04332A1920C7C96C008885B9 = {
+			isa = PBXGroup;
+			children = (
+				04332A2420C7C96C008885B9 /* jsonParser */,
+				04332A3D20C7C96C008885B9 /* jsonParserTests */,
+				04332A4820C7C96C008885B9 /* jsonParserUITests */,
+				04332A2320C7C96C008885B9 /* Products */,
+				CC43ED9C8E8481391F62F313 /* Pods */,
+				EDAF2D52B6AD23ED22D267CD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04332A2320C7C96C008885B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04332A2220C7C96C008885B9 /* jsonParser.app */,
+				04332A3A20C7C96C008885B9 /* jsonParserTests.xctest */,
+				04332A4520C7C96C008885B9 /* jsonParserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04332A2420C7C96C008885B9 /* jsonParser */ = {
+			isa = PBXGroup;
+			children = (
+				04882A5C20D1238600E0E762 /* lib */,
+				04332A2520C7C96C008885B9 /* AppDelegate.h */,
+				04332A2620C7C96C008885B9 /* AppDelegate.m */,
+				04332A2820C7C96C008885B9 /* ViewController.h */,
+				04332A2920C7C96C008885B9 /* ViewController.m */,
+				04332A5720C7CA4A008885B9 /* test.json */,
+				04332A2B20C7C96C008885B9 /* Main.storyboard */,
+				04332A2E20C7C96C008885B9 /* Assets.xcassets */,
+				04332A3020C7C96C008885B9 /* LaunchScreen.storyboard */,
+				04332A3320C7C96C008885B9 /* Info.plist */,
+				04332A3420C7C96C008885B9 /* main.m */,
+			);
+			path = jsonParser;
+			sourceTree = "<group>";
+		};
+		04332A3D20C7C96C008885B9 /* jsonParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				04332A3E20C7C96C008885B9 /* jsonParserTests.m */,
+				04332A4020C7C96C008885B9 /* Info.plist */,
+			);
+			path = jsonParserTests;
+			sourceTree = "<group>";
+		};
+		04332A4820C7C96C008885B9 /* jsonParserUITests */ = {
+			isa = PBXGroup;
+			children = (
+				04332A4920C7C96C008885B9 /* jsonParserUITests.m */,
+				04332A4B20C7C96C008885B9 /* Info.plist */,
+			);
+			path = jsonParserUITests;
+			sourceTree = "<group>";
+		};
+		04882A5C20D1238600E0E762 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */,
+				04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */,
+				04882AB320D1336800E0E762 /* YDAlbumTCell.h */,
+				04882AB220D1336800E0E762 /* YDAlbumTCell.m */,
+				04882AAF20D1334D00E0E762 /* YDImgPickerVCTitleView.h */,
+				04882AB020D1334E00E0E762 /* YDImgPickerVCTitleView.m */,
+				04882AAC20D132E300E0E762 /* YDComImgDescCCell.h */,
+				04882AAD20D132E500E0E762 /* YDComImgDescCCell.m */,
+				04882AAA20D132CD00E0E762 /* YDImgPickerTakeCCell.h */,
+				04882AA920D132CC00E0E762 /* YDImgPickerTakeCCell.m */,
+				04882AA420D131E300E0E762 /* YDImgIconCCell.h */,
+				04882AA320D131E300E0E762 /* YDImgIconCCell.m */,
+				04882A9A20D1314500E0E762 /* YDImgPickerView.h */,
+				04882AA720D131FD00E0E762 /* YDSingleImgCCell.h */,
+				04882AA620D131FD00E0E762 /* YDSingleImgCCell.m */,
+				04882A9B20D1314500E0E762 /* YDImgPickerView.m */,
+				04882A9D20D1318D00E0E762 /* YDImgPickerCCell.h */,
+				04882A9E20D1318E00E0E762 /* YDImgPickerCCell.m */,
+				04882A9720D1303600E0E762 /* YDPhotoHasTakeView.h */,
+				04882A9820D1303700E0E762 /* YDPhotoHasTakeView.m */,
+				04882AA020D131BB00E0E762 /* YDPickerBottomView.h */,
+				04882AA120D131BB00E0E762 /* YDPickerBottomView.m */,
+				04882A9520D12FF000E0E762 /* YDPhotoTakenView.h */,
+				04882A9420D12FF000E0E762 /* YDPhotoTakenView.m */,
+				04882A8E20D12FB500E0E762 /* YDPhotoTakenBottomView.h */,
+				04882A8F20D12FB600E0E762 /* YDPhotoTakenBottomView.m */,
+				04882A8A20D12D8200E0E762 /* YYKitMacro.h */,
+				04882A8720D12D4700E0E762 /* UIView+YYAdd.h */,
+				04882A8820D12D4700E0E762 /* UIView+YYAdd.m */,
+				04882A8C20D12EC800E0E762 /* YDBrowserImgModel.h */,
+				04882A8B20D12EC700E0E762 /* YDBrowserImgModel.m */,
+				04882A7F20D1293300E0E762 /* YDBaseCollectionViewCell.h */,
+				04882A7C20D1293300E0E762 /* YDBaseCollectionViewCell.m */,
+				04882A8020D1293400E0E762 /* YDBaseTableViewCell.h */,
+				04882A7D20D1293300E0E762 /* YDBaseTableViewCell.m */,
+				04882A7B20D1293300E0E762 /* YDBaseView.h */,
+				04882A7E20D1293300E0E762 /* YDBaseView.m */,
+				04882A6620D124DF00E0E762 /* YDCommonImgBrowserView.h */,
+				04882A6720D124DF00E0E762 /* YDCommonImgBrowserView.m */,
+				04882A6120D1241000E0E762 /* YDImgPickerViewController.h */,
+				04882A6220D1241000E0E762 /* YDImgPickerViewController.m */,
+				04882A6320D1241000E0E762 /* YDPhotoTakeViewController.h */,
+				04882A6020D1240F00E0E762 /* YDPhotoTakeViewController.m */,
+				04882A9120D12FCF00E0E762 /* YDPhotoTakenContentView.h */,
+				04882A9220D12FCF00E0E762 /* YDPhotoTakenContentView.m */,
+				04882A5D20D1239200E0E762 /* YDCommonImgBrowser.h */,
+				04882A5E20D1239200E0E762 /* YDCommonImgBrowser.m */,
+				04882A6A20D1253000E0E762 /* YDPreviewBottomView.h */,
+				04882A6920D1253000E0E762 /* YDPreviewBottomView.m */,
+				04882A6C20D1255F00E0E762 /* YDLeftRightBtnView.h */,
+				04882A6D20D1255F00E0E762 /* YDLeftRightBtnView.m */,
+				04882A7620D128AF00E0E762 /* YDImgBrowserCCell.h */,
+				04882A7520D128AF00E0E762 /* YDImgBrowserCCell.m */,
+				04882A7820D128CD00E0E762 /* YDImgZoomCCell.h */,
+				04882A7920D128CD00E0E762 /* YDImgZoomCCell.m */,
+				04882A8520D12BE300E0E762 /* YDObtainManagerMgr.h */,
+				04882A8420D12BE200E0E762 /* YDObtainManagerMgr.m */,
+				04882A7420D1271700E0E762 /* GHIDefine.pch */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		CC43ED9C8E8481391F62F313 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAB03A0DC8049DB087F18917 /* Pods-jsonParser.debug.xcconfig */,
+				59B006C88ED1E52FB04D840C /* Pods-jsonParser.release.xcconfig */,
+				38E12EEAD2874F6BBC8457B0 /* Pods-jsonParserTests.debug.xcconfig */,
+				99662F2EEDC9CC1B2644CE52 /* Pods-jsonParserTests.release.xcconfig */,
+				CAD51FC90D7A1E46517BBE82 /* Pods-jsonParserUITests.debug.xcconfig */,
+				1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDAF2D52B6AD23ED22D267CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */,
+				FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */,
+				3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04332A2120C7C96C008885B9 /* jsonParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04332A4E20C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParser" */;
+			buildPhases = (
+				F7012AD5ACDD3F9A9EAA9260 /* [CP] Check Pods Manifest.lock */,
+				04332A1E20C7C96C008885B9 /* Sources */,
+				04332A1F20C7C96C008885B9 /* Frameworks */,
+				04332A2020C7C96C008885B9 /* Resources */,
+				49FE549FCECEBF946658254E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jsonParser;
+			productName = jsonParser;
+			productReference = 04332A2220C7C96C008885B9 /* jsonParser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04332A3920C7C96C008885B9 /* jsonParserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04332A5120C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParserTests" */;
+			buildPhases = (
+				3AA4E7B626D139B91E006252 /* [CP] Check Pods Manifest.lock */,
+				04332A3620C7C96C008885B9 /* Sources */,
+				04332A3720C7C96C008885B9 /* Frameworks */,
+				04332A3820C7C96C008885B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04332A3C20C7C96C008885B9 /* PBXTargetDependency */,
+			);
+			name = jsonParserTests;
+			productName = jsonParserTests;
+			productReference = 04332A3A20C7C96C008885B9 /* jsonParserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		04332A4420C7C96C008885B9 /* jsonParserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04332A5420C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParserUITests" */;
+			buildPhases = (
+				AC595D11CE623B5E6B6A1900 /* [CP] Check Pods Manifest.lock */,
+				04332A4120C7C96C008885B9 /* Sources */,
+				04332A4220C7C96C008885B9 /* Frameworks */,
+				04332A4320C7C96C008885B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04332A4720C7C96C008885B9 /* PBXTargetDependency */,
+			);
+			name = jsonParserUITests;
+			productName = jsonParserUITests;
+			productReference = 04332A4520C7C96C008885B9 /* jsonParserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04332A1A20C7C96C008885B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = mac;
+				TargetAttributes = {
+					04332A2120C7C96C008885B9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					04332A3920C7C96C008885B9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 04332A2120C7C96C008885B9;
+					};
+					04332A4420C7C96C008885B9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 04332A2120C7C96C008885B9;
+					};
+				};
+			};
+			buildConfigurationList = 04332A1D20C7C96C008885B9 /* Build configuration list for PBXProject "jsonParser" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04332A1920C7C96C008885B9;
+			productRefGroup = 04332A2320C7C96C008885B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04332A2120C7C96C008885B9 /* jsonParser */,
+				04332A3920C7C96C008885B9 /* jsonParserTests */,
+				04332A4420C7C96C008885B9 /* jsonParserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04332A2020C7C96C008885B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04332A3220C7C96C008885B9 /* LaunchScreen.storyboard in Resources */,
+				04332A5820C7CA4A008885B9 /* test.json in Resources */,
+				04332A2F20C7C96C008885B9 /* Assets.xcassets in Resources */,
+				04332A2D20C7C96C008885B9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A3820C7C96C008885B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A4320C7C96C008885B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AA4E7B626D139B91E006252 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jsonParserTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		49FE549FCECEBF946658254E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser-resources.sh",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC595D11CE623B5E6B6A1900 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jsonParserUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7012AD5ACDD3F9A9EAA9260 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jsonParser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04332A1E20C7C96C008885B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04882AA820D131FD00E0E762 /* YDSingleImgCCell.m in Sources */,
+				04882A8120D1293400E0E762 /* YDBaseCollectionViewCell.m in Sources */,
+				04882A8620D12BE300E0E762 /* YDObtainManagerMgr.m in Sources */,
+				04882AA220D131BB00E0E762 /* YDPickerBottomView.m in Sources */,
+				04332A2A20C7C96C008885B9 /* ViewController.m in Sources */,
+				04882AAE20D132E600E0E762 /* YDComImgDescCCell.m in Sources */,
+				04882A6820D124DF00E0E762 /* YDCommonImgBrowserView.m in Sources */,
+				04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */,
+				04332A3520C7C96C008885B9 /* main.m in Sources */,
+				04882A7720D128AF00E0E762 /* YDImgBrowserCCell.m in Sources */,
+				04882AAB20D132CD00E0E762 /* YDImgPickerTakeCCell.m in Sources */,
+				04882A9620D12FF000E0E762 /* YDPhotoTakenView.m in Sources */,
+				04882AA520D131E400E0E762 /* YDImgIconCCell.m in Sources */,
+				04882A7A20D128CD00E0E762 /* YDImgZoomCCell.m in Sources */,
+				04882A5F20D1239200E0E762 /* YDCommonImgBrowser.m in Sources */,
+				04882A9F20D1318E00E0E762 /* YDImgPickerCCell.m in Sources */,
+				04882A8920D12D4700E0E762 /* UIView+YYAdd.m in Sources */,
+				04882A9020D12FB600E0E762 /* YDPhotoTakenBottomView.m in Sources */,
+				04882A9320D12FCF00E0E762 /* YDPhotoTakenContentView.m in Sources */,
+				04332A2720C7C96C008885B9 /* AppDelegate.m in Sources */,
+				04882A6420D1241000E0E762 /* YDPhotoTakeViewController.m in Sources */,
+				04882A6E20D1255F00E0E762 /* YDLeftRightBtnView.m in Sources */,
+				04882A8320D1293400E0E762 /* YDBaseView.m in Sources */,
+				04882A8220D1293400E0E762 /* YDBaseTableViewCell.m in Sources */,
+				04882A9920D1303700E0E762 /* YDPhotoHasTakeView.m in Sources */,
+				04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */,
+				04882A6520D1241000E0E762 /* YDImgPickerViewController.m in Sources */,
+				04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */,
+				04882A8D20D12EC800E0E762 /* YDBrowserImgModel.m in Sources */,
+				04882A6B20D1253000E0E762 /* YDPreviewBottomView.m in Sources */,
+				04882A9C20D1314600E0E762 /* YDImgPickerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A3620C7C96C008885B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04332A3F20C7C96C008885B9 /* jsonParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04332A4120C7C96C008885B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04332A4A20C7C96C008885B9 /* jsonParserUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04332A3C20C7C96C008885B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04332A2120C7C96C008885B9 /* jsonParser */;
+			targetProxy = 04332A3B20C7C96C008885B9 /* PBXContainerItemProxy */;
+		};
+		04332A4720C7C96C008885B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04332A2120C7C96C008885B9 /* jsonParser */;
+			targetProxy = 04332A4620C7C96C008885B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04332A2B20C7C96C008885B9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04332A2C20C7C96C008885B9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		04332A3020C7C96C008885B9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04332A3120C7C96C008885B9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04332A4C20C7C96C008885B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		04332A4D20C7C96C008885B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04332A4F20C7C96C008885B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB03A0DC8049DB087F18917 /* Pods-jsonParser.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/jsonParser/lib/GHIDefine.pch";
+				INFOPLIST_FILE = jsonParser/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04332A5020C7C96C008885B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59B006C88ED1E52FB04D840C /* Pods-jsonParser.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/jsonParser/lib/GHIDefine.pch";
+				INFOPLIST_FILE = jsonParser/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		04332A5220C7C96C008885B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38E12EEAD2874F6BBC8457B0 /* Pods-jsonParserTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				INFOPLIST_FILE = jsonParserTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jsonParser.app/jsonParser";
+			};
+			name = Debug;
+		};
+		04332A5320C7C96C008885B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99662F2EEDC9CC1B2644CE52 /* Pods-jsonParserTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				INFOPLIST_FILE = jsonParserTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jsonParser.app/jsonParser";
+			};
+			name = Release;
+		};
+		04332A5520C7C96C008885B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAD51FC90D7A1E46517BBE82 /* Pods-jsonParserUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				INFOPLIST_FILE = jsonParserUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = jsonParser;
+			};
+			name = Debug;
+		};
+		04332A5620C7C96C008885B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2XBEJ6876;
+				INFOPLIST_FILE = jsonParserUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linyu.music.jsonParserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = jsonParser;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04332A1D20C7C96C008885B9 /* Build configuration list for PBXProject "jsonParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04332A4C20C7C96C008885B9 /* Debug */,
+				04332A4D20C7C96C008885B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04332A4E20C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04332A4F20C7C96C008885B9 /* Debug */,
+				04332A5020C7C96C008885B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04332A5120C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04332A5220C7C96C008885B9 /* Debug */,
+				04332A5320C7C96C008885B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04332A5420C7C96C008885B9 /* Build configuration list for PBXNativeTarget "jsonParserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04332A5520C7C96C008885B9 /* Debug */,
+				04332A5620C7C96C008885B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04332A1A20C7C96C008885B9 /* Project object */;
+}

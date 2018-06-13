@@ -1,0 +1,120 @@
+//
+//  GHIDefine.pch
+//  jsonParser
+//
+//  Created by mac on 13/6/18.
+//  Copyright © 2018年 mac. All rights reserved.
+//
+
+#ifndef GHIDefine_pch
+#define GHIDefine_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Masonry/Masonry.h>
+
+#define IS_SCREEN_SIZE_1 [UIScreen mainScreen].bounds.size.height == 480
+#define IS_SCREEN_SIZE_2 [UIScreen mainScreen].bounds.size.height == 568
+#define IS_SCREEN_SIZE_3 [UIScreen mainScreen].bounds.size.height == 667
+#define IS_SCREEN_SIZE_4 [UIScreen mainScreen].bounds.size.height == 736
+#define IS_SCREEN_SIZE_5 [UIScreen mainScreen].bounds.size.height == 812
+#define DEVICE_WIDTH_SCALE ([UIScreen mainScreen].bounds.size.width / 375.0)
+#define DEVICE_WIDTH_SCALE_FOR_FONT (([UIScreen mainScreen].bounds.size.width / 375.0) > 1 ? 1 : ([UIScreen mainScreen].bounds.size.width / 375.0))
+#define DEVICE_HEIGHT_SCALE ([UIScreen mainScreen].bounds.size.height / 667.0)
+#define DEVICE_WIDTH_OF(x) round((x) * DEVICE_WIDTH_SCALE) // 四舍五入
+#define DEVICE_WIDTH_OF_FOR_FONT(x) round((x) * DEVICE_WIDTH_SCALE_FOR_FONT)
+#define DEVICE_HEIGHT_OF(x) round((x) * DEVICE_HEIGHT_SCALE)
+#define INDEX_PROGRESS_SCALE ([UIScreen mainScreen].bounds.size.width >= 375 ? 0.53333 : ([UIScreen mainScreen].bounds.size.height == 480 ? 0.5 : 0.6))
+#define DEVICE_WIDTH_BY(x) (([UIScreen mainScreen].bounds.size.width / 375.0) * (x))
+
+#define DWF(x) DEVICE_WIDTH_OF(x)
+#define DEVICE_WIDTH_ROUND(X) DWF(x)
+
+#define SCREEN_BOUNDS CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+#define SCREEN_SIZE CGSizeMake(SCREEN_WIDTH_V1, SCREEN_HEIGHT_V1)
+#define SCREEN_CENTER CGPointMake(SCREEN_WIDTH_V0 * 0.5, SCREEN_HEIGHT_V0 * 0.5)
+
+#define YDBottomFix ([UIScreen mainScreen].bounds.size.height == 812 ? 34 : 0)
+#define YDTopFix ([UIScreen mainScreen].bounds.size.height == 812 ? 22 : 0)
+#define YDStatusBarH ([UIScreen mainScreen].bounds.size.height == 812 ? 44 : 20)
+#define YDTopLayoutH ([UIScreen mainScreen].bounds.size.height == 812 ? 88 : 64)
+#define YDTabBarH ([UIScreen mainScreen].bounds.size.height == 812 ? 83 : 49)
+#define YDIphoneXBangsHei ([UIScreen mainScreen].bounds.size.height == 812 ? 44 : 0)
+
+#define BEFORE_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] < 8
+#define GE_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8
+#define BEFORE_IOS9 [[[UIDevice currentDevice] systemVersion] floatValue] < 9
+#define AFTER_IOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9
+#define BEFORE_IOS10 [[[UIDevice currentDevice] systemVersion] floatValue] < 10
+#define AFTER_IOS10 [[[UIDevice currentDevice] systemVersion] floatValue] >= 10
+#define AFTER_IOS11 [[[UIDevice currentDevice] systemVersion] floatValue] >= 11
+
+#define YDF_DEFAULT_R(s) (BEFORE_IOS9 ? [UIFont systemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Regular" size:s])
+#define YDF_DEFAULT_M(s) (BEFORE_IOS9 ? [UIFont boldSystemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Medium" size:s])
+#define YDF_DEFAULT_B(s) (BEFORE_IOS9 ? [UIFont boldSystemFontOfSize:s] : [UIFont fontWithName:@"PingFangSC-Semibold" size:s])
+#define YDF_DEFAULT_R_FIT(s) (BEFORE_IOS9 ? [UIFont systemFontOfSize:DEVICE_WIDTH_OF_FOR_FONT(s)] : [UIFont fontWithName:@"PingFangSC-Regular" size:DEVICE_WIDTH_OF_FOR_FONT(s)])
+#define YDF_DEFAULT_M_FIT(s) (BEFORE_IOS9 ? [UIFont boldSystemFontOfSize:DEVICE_WIDTH_OF_FOR_FONT(s)] : [UIFont fontWithName:@"PingFangSC-Medium" size:DEVICE_WIDTH_OF_FOR_FONT(s)])
+#define YDF_DEFAULT_B_FIT(s) (BEFORE_IOS9 ? [UIFont boldSystemFontOfSize:DEVICE_WIDTH_OF_FOR_FONT(s)] : [UIFont fontWithName:@"PingFangSC-Semibold" size:DEVICE_WIDTH_OF_FOR_FONT(s)])
+
+#define YDSP_WIDTH (1.0 / [UIScreen mainScreen].scale) // separator line width
+
+/// 悦动圈主题色
+#define YDC_G     YD_RGBA( 17, 213, 156, 1.0) //YD_RGBA( 28, 192,  25, 1.0) // YD theme green normal
+#define YDC_HG    YD_RGB( 17, 200, 144) //YD_RGB( 36, 168, 34) //YD theme green highlight
+#define YDC_G2     YD_RGBA( 17, 213, 156, 1.0) // YD theme green normal
+#define YDC_HG2    YD_RGBA( 17, 213, 156, .5) //YD theme green highlight
+#define YDC_GA(a) YD_RGBA( 17, 213,  156, a) // YD theme green normal
+#define YDC_BG    YD_RGBA(245, 245, 245, 1.0) // background gray
+#define YDC_SP    YD_RGBA(229, 229, 229, 1.0) // separator line color
+#define YDC_NAV   YD_RGBA(255, 255, 255, 1.0) // nav bar gray color
+#define YDC_NAV_TINT   YD_RGBA(51, 51, 51, 1.0) // nav bar gray color
+#define YDC_NAV_TINT_H   YD_RGBA(51, 51, 51, .3) // nav bar gray color
+#define YDC_NAV_TINT_NORMAL   YD_RGBA(102, 102, 102, 1) // nav bar gray color
+#define YDC_NAV_TINT_NORMAL_H   YD_RGBA(102, 102, 102, .3) // nav bar gray color
+#define YDC_NAV_TINT_WEAK   YD_RGBA(153, 153, 153, 1) // nav bar gray color
+#define YDC_TITLE YD_RGBA( 51,  51,  51, 1.0) // title text color
+#define YDC_TITLE_A(a) YD_RGBA( 51,  51,  51, a) // title text color
+#define YDC_TEXT  YD_RGBA(153, 153, 153, 1.0) // content text color
+#define YDC_TEXT_A(a)  YD_RGBA(79, 73, 87, a) // content text color
+#define YDC_TEXT_DARK YD_RGBA(102, 102, 102, 1) // dark content text color
+#define YDC_TEXT_DARK_A(a) YD_RGBA(102, 102, 102, a) // dark content text color
+#define YDC_TEXT_LIGHT YD_RGBA(204, 204, 204, 1) // light content text color
+
+#define YDC_PREV_G     YD_RGBA( 28, 192,  25, 1.0) // // YD theme green normal
+#define YDC_PREV_HG    YD_RGB( 36, 168, 34) // //YD theme green highlight
+
+#define YDC_RED     YD_RGBA(228,56,56,1) // YD title red
+
+// color
+#define YD_RGBA_FLOAT(r, g, b, a) [UIColor colorWithRed:r green:g blue:b alpha:a/1.0]
+#define YD_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/1.0]
+#define YD_RGB(r, g, b)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define YD_WHITE(a)         [UIColor colorWithWhite:1.0 alpha:a]
+#define YD_BLACK(a)         [UIColor colorWithWhite:0.0 alpha:a]
+#define YD_GRAY(g)          [UIColor colorWithWhite:g/255.0 alpha:1.0]
+#define YD_GRAYA(g, a)      [UIColor colorWithWhite:g/255.0 alpha:a]
+
+#define YD_SAME_RGBA(c,a) [UIColor colorWithRed:c/255.0 green:c/255.0 blue:c/255.0 alpha:a/1.0]
+#define YD_SAME_RGB(c) YD_SAME_RGBA(c,1.f)
+
+#define YD_TEXT_DEFAULT_GREEN YD_RGB(17.f, 213.f, 156.f)
+
+typedef void(^IntegerBlock)(NSInteger index);
+typedef void(^FloatBlock)(float value);
+typedef void(^CGFloatBlock)(CGFloat value);
+typedef void(^BoolBlock)(BOOL flag);
+typedef void(^VoidBlock)(void);
+typedef void(^StringBlock)(NSString *str);
+typedef void(^StringAndIntegerBlock)(NSString *str, NSInteger idx);
+typedef void(^IndexPathBlock)(NSIndexPath *indexPath);
+
+#define YD_DYNAMIC_VC_VIEW(ViewClass) \
+@dynamic view; \
+- (void)loadView { \
+    self.view = [[ViewClass alloc] initWithFrame:SCREEN_BOUNDS]; \
+}
+
+
+
+#endif /* GHIDefine_pch */
