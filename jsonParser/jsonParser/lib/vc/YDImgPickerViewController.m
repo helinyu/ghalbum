@@ -6,6 +6,7 @@
 //  Copyright © 2017年 yuedong. All rights reserved.
 //
 
+#import <Photos/Photos.h>
 #import "YDImgPickerViewController.h"
 #import "YDImgPickerView.h"
 //#import "YDBaseCollectionView.h"
@@ -22,7 +23,6 @@
 //#import "YDAlbumMgr.h"
 //#import "NSString+YDAdd.h"
 //#import "YDAlbumService.h"
-#import "TZAssetModel.h"
 #import "YDAlbumTCell.h"
 
 #import "YDPhotoTakeViewController.h"
@@ -326,7 +326,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 // delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     OBTAIN_MGR(YDAlbumMgr).selectedAlbum = _selectedAlbum = _albums[indexPath.row];
-    [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
+//    [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
     [self.view updateDisplayViewWithIsUP:NO];
     [self reloadAssetsAndReloadView];
 }
@@ -336,7 +336,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     [_titleContentView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(titleViewW);
     }];
-    [_titleContentView configureWithTitle:_selectedAlbum.name isUpDirection:NO];
+//    [_titleContentView configureWithTitle:_selectedAlbum.name isUpDirection:NO];
 }
 
 #pragma mark -- collectionView datasource & delegate
@@ -362,66 +362,66 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
         __weak typeof (self) wSelf = self;
         TZAssetModel *asset;
         if (!_isVideoFilter) {
-            asset= _selectedAlbum.models[index];
+//            asset= _selectedAlbum.models[index];
         }
         else {
 //            asset = _selectedAlbum.videos[index];
         }
         [cell configureWithAsset:asset then:^{
             TZAssetModel *firstAsset = wSelf.allSelctedAssets.firstObject;
-            if (!asset.isSelected && firstAsset) {
-                if (wSelf.allSelctedAssets.count >= kMaxChoiceImgNum) {
-                    NSLog(@"最多只能够选择9张");
-                    return ;
-                }
-                if (firstAsset.type ==TZAssetModelMediaTypeVideo){
-                    if (asset.type == TZAssetModelMediaTypeVideo) {
-                        NSLog(@"最多选择一个视频");
-                    }
-                    else if (asset.type == TZAssetModelMediaTypePhoto) {
-                        NSLog(@"图片和视频不能够同时选择");
-                    }
-                    else {
-                        NSLog(@"您已经选择了视频类型并且只可以选择一个视频");
-                    }
-                    return;
-                }
-               
-                if ((firstAsset.type ==TZAssetModelMediaTypePhoto) && (asset.type == TZAssetModelMediaTypeVideo)){
-                    NSLog(@"图片和视频不能够同时选择");
-                    return;
-                }
-            }
-            
-            if (asset.type ==TZAssetModelMediaTypeVideo){
-                PHAsset *phAsset =asset.asset;
-                if (phAsset.duration > kVideoMaxDuration) {
-                    NSLog(@"视频时长不能长于3分钟");
-                    return;
-                }
-                if (phAsset.duration <=kVideoMinDuration) {
-                    NSLog(@"视频时长不能小于3秒");
-                    return;
-                }
-            }
-            
-            if (!asset.isSelected) {
-                asset.isSelected = YES;
-                [wSelf.allSelctedAssets addObject:asset];
-                wSelf.leafChoiceNum--;
-                [wSelf.view.pickerButtomView updateBtnEnable:YES];
-            }else {
-                for (TZAssetModel *model_item in wSelf.allSelctedAssets) {
-                    NSString *outIdentifier =[[TZImageManager manager] getAssetIdentifier:asset.asset];
-                    NSString *innerIdentifier = [[TZImageManager manager] getAssetIdentifier:model_item.asset];
-                    if ([outIdentifier isEqualToString:innerIdentifier]) {
-                        [wSelf.allSelctedAssets removeObject:model_item];
-                        wSelf.leafChoiceNum++;
-                        asset.isSelected = NO;
-                        break;
-                    }
-                }
-            }
+//            if (!asset.isSelected && firstAsset) {
+//                if (wSelf.allSelctedAssets.count >= kMaxChoiceImgNum) {
+//                    NSLog(@"最多只能够选择9张");
+//                    return ;
+//                }
+//                if (firstAsset.type ==TZAssetModelMediaTypeVideo){
+//                    if (asset.type == TZAssetModelMediaTypeVideo) {
+//                        NSLog(@"最多选择一个视频");
+//                    }
+//                    else if (asset.type == TZAssetModelMediaTypePhoto) {
+//                        NSLog(@"图片和视频不能够同时选择");
+//                    }
+//                    else {
+//                        NSLog(@"您已经选择了视频类型并且只可以选择一个视频");
+//                    }
+//                    return;
+//                }
+//
+//                if ((firstAsset.type ==TZAssetModelMediaTypePhoto) && (asset.type == TZAssetModelMediaTypeVideo)){
+//                    NSLog(@"图片和视频不能够同时选择");
+//                    return;
+//                }
+//            }
+//
+//            if (asset.type ==TZAssetModelMediaTypeVideo){
+//                PHAsset *phAsset =asset.asset;
+//                if (phAsset.duration > kVideoMaxDuration) {
+//                    NSLog(@"视频时长不能长于3分钟");
+//                    return;
+//                }
+//                if (phAsset.duration <=kVideoMinDuration) {
+//                    NSLog(@"视频时长不能小于3秒");
+//                    return;
+//                }
+//            }
+//
+//            if (!asset.isSelected) {
+//                asset.isSelected = YES;
+//                [wSelf.allSelctedAssets addObject:asset];
+//                wSelf.leafChoiceNum--;
+//                [wSelf.view.pickerButtomView updateBtnEnable:YES];
+//            }else {
+//                for (TZAssetModel *model_item in wSelf.allSelctedAssets) {
+//                    NSString *outIdentifier =[[TZImageManager manager] getAssetIdentifier:asset.asset];
+//                    NSString *innerIdentifier = [[TZImageManager manager] getAssetIdentifier:model_item.asset];
+//                    if ([outIdentifier isEqualToString:innerIdentifier]) {
+//                        [wSelf.allSelctedAssets removeObject:model_item];
+//                        wSelf.leafChoiceNum++;
+//                        asset.isSelected = NO;
+//                        break;
+//                    }
+//                }
+//            }
             if (wSelf.allSelctedAssets.count >0) {
                 [wSelf.view.pickerButtomView updateRightBtnTitlte:[NSString stringWithFormat:@"完成(%ld)",(unsigned long)wSelf.allSelctedAssets.count]];
             }
@@ -563,15 +563,15 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 - (void)checkAllSelectedAssets {
     if (_allSelctedAssets.count >0) {
         NSMutableArray *mSelectAssets = @[].mutableCopy;
-        for (TZAssetModel *item in _allSelctedAssets) {
-            [mSelectAssets addObject:item.asset];
-        }
-        for (TZAssetModel *model in _selectedAlbum.models) {
-            model.isSelected = NO;
-            if ([[TZImageManager manager] isAssetsArray:mSelectAssets containAsset:model.asset]) {
-                model.isSelected = YES;
-            }
-        }
+//        for (TZAssetModel *item in _allSelctedAssets) {
+//            [mSelectAssets addObject:item.asset];
+//        }
+//        for (TZAssetModel *model in _selectedAlbum.models) {
+//            model.isSelected = NO;
+//            if ([[TZImageManager manager] isAssetsArray:mSelectAssets containAsset:model.asset]) {
+//                model.isSelected = YES;
+//            }
+//        }
     }
 }
 
@@ -588,9 +588,9 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 - (BOOL)isVideoSelected {
     if (_allSelctedAssets.count >0) {
         TZAssetModel *firstAsset = _allSelctedAssets.firstObject;
-        if (firstAsset.type == TZAssetModelMediaTypeVideo) {
-            return YES;
-        }
+//        if (firstAsset.type == TZAssetModelMediaTypeVideo) {
+//            return YES;
+//        }
     }
     return NO;
 }

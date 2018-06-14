@@ -6,8 +6,8 @@
 //  Copyright © 2017年 yuedong. All rights reserved.
 //
 
+#import <Photos/Photos.h>
 #import "YDImgPickerCCell.h"
-#import "TZAssetModel.h"
 #import "YDAlbumService.h"
 #import "UIView+YYAdd.h"
 
@@ -89,28 +89,28 @@
 
 - (void)configureWithAsset:(TZAssetModel *)item then:(VoidBlock)block {
     _item = item;
-    if (item.type == TZAssetModelMediaTypeVideo) {
-        _videoDurationLabel.hidden = NO;
-        _videoDurationLabel.text = [NSString stringWithFormat:@" %@ ",item.timeLength];
-    }
-    
-    self.representedAssetIdentifier = [[TZImageManager manager] getAssetIdentifier:item.asset];
-    int32_t imageRequestID = [[TZImageManager manager] getPhotoWithAsset:item.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
-        self.imgView.alpha = 1.0;
-        if ([self.representedAssetIdentifier isEqualToString:[[TZImageManager manager] getAssetIdentifier:item.asset]]) {
-            [self configureWithImg:photo isChoice:item.isSelected then:block];
-        } else {
-            [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
-        }
-        if (!isDegraded) {
-            self.imageRequestID = 0;
-        }
-    } progressHandler:nil networkAccessAllowed:NO];
-
-    if (imageRequestID && self.imageRequestID && imageRequestID != self.imageRequestID) {
-        [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
-    }
-    self.imageRequestID = imageRequestID;
+//    if (item.type == TZAssetModelMediaTypeVideo) {
+//        _videoDurationLabel.hidden = NO;
+//        _videoDurationLabel.text = [NSString stringWithFormat:@" %@ ",item.timeLength];
+//    }
+//
+//    self.representedAssetIdentifier = [[TZImageManager manager] getAssetIdentifier:item.asset];
+//    int32_t imageRequestID = [[TZImageManager manager] getPhotoWithAsset:item.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+//        self.imgView.alpha = 1.0;
+//        if ([self.representedAssetIdentifier isEqualToString:[[TZImageManager manager] getAssetIdentifier:item.asset]]) {
+//            [self configureWithImg:photo isChoice:item.isSelected then:block];
+//        } else {
+//            [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
+//        }
+//        if (!isDegraded) {
+//            self.imageRequestID = 0;
+//        }
+//    } progressHandler:nil networkAccessAllowed:NO];
+//
+//    if (imageRequestID && self.imageRequestID && imageRequestID != self.imageRequestID) {
+//        [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
+//    }
+//    self.imageRequestID = imageRequestID;
 }
 
 - (void)configureWithImge:(UIImage *)img {

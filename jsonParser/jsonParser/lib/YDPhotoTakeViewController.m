@@ -6,13 +6,13 @@
 //  Copyright © 2017年 yuedong. All rights reserved.
 //
 
+#import <Photos/Photos.h>
 #import "YDPhotoTakeViewController.h"
 #import "YDPhotoTakenBottomView.h"
 #import "YDPhotoTakenContentView.h"
 #import "YDPhotoHasTakeView.h"
 //#import "YDCircleEditorViewController.h"
 //#import "WBGImageEditor.h"
-#import "TZAssetModel.h"
 #import "YDObtainManagerMgr.h"
 #import "YDLeftRightBtnView.h"
 //#import "WBGImageEditor.h"
@@ -204,36 +204,36 @@ static const CGFloat kBottomViewH = 100.f;
                         });
                         return;
                     }
-                    [[TZImageManager manager] savePhotoWithImage:strongSelf.takeImg completion:^(NSError *error) {
-                        if (error) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                [strongSelf yd_popText:@"保存图片失败"];
-//                                if ([strongSelf yd_isLoading]) {
-//                                    [strongSelf yd_endLoading];
-//                                }
-                            });
-                            return ;
-                        }
-                        [OBTAIN_MGR(YDAlbumMgr) loadLastAssetComplete:^(TZAssetModel *lastAsset) {
-                            if (!lastAsset) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-//                                    [strongSelf yd_popText:@"获取最新图片失败"];
-//                                    if ([strongSelf yd_isLoading]) {
-//                                        [strongSelf yd_endLoading];
-//                                    }
-                                });
-                                return ;
-                            }
-                            lastAsset.isSelected = YES;
-                            [OBTAIN_MGR(YDAlbumMgr).selectedAssets addObject:lastAsset];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                if ([strongSelf yd_isLoading]) {
-//                                    [strongSelf yd_endLoading];
-//                                }
-                                [wSelf dismissViewControllerAnimated:YES completion:nil];
-                            });
-                        }];
-                    }];
+//                    [[TZImageManager manager] savePhotoWithImage:strongSelf.takeImg completion:^(NSError *error) {
+//                        if (error) {
+//                            dispatch_async(dispatch_get_main_queue(), ^{
+////                                [strongSelf yd_popText:@"保存图片失败"];
+////                                if ([strongSelf yd_isLoading]) {
+////                                    [strongSelf yd_endLoading];
+////                                }
+//                            });
+//                            return ;
+//                        }
+//                        [OBTAIN_MGR(YDAlbumMgr) loadLastAssetComplete:^(TZAssetModel *lastAsset) {
+//                            if (!lastAsset) {
+//                                dispatch_async(dispatch_get_main_queue(), ^{
+////                                    [strongSelf yd_popText:@"获取最新图片失败"];
+////                                    if ([strongSelf yd_isLoading]) {
+////                                        [strongSelf yd_endLoading];
+////                                    }
+//                                });
+//                                return ;
+//                            }
+//                            lastAsset.isSelected = YES;
+//                            [OBTAIN_MGR(YDAlbumMgr).selectedAssets addObject:lastAsset];
+//                            dispatch_async(dispatch_get_main_queue(), ^{
+////                                if ([strongSelf yd_isLoading]) {
+////                                    [strongSelf yd_endLoading];
+////                                }
+//                                [wSelf dismissViewControllerAnimated:YES completion:nil];
+//                            });
+//                        }];
+//                    }];
                 }
             }
         }

@@ -84,38 +84,38 @@ static CGFloat const kPlayIconLength = 44.f;
     [self setPlayIconHidden:assetItem];
     
     if (_assetItem && _imageRequestID) {
-        [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
+//        [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
     
-    __weak __typeof(self) weakSelf = self;
-    _imageRequestID = [[TZImageManager manager] getPhotoWithAsset:assetItem.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
-        if (![assetItem isEqual:_assetItem]) return;
-        self.imgView.image = photo;
-        if (weakSelf.imageProgressUpdateBlock) {
-            weakSelf.imageProgressUpdateBlock(1);
-        }
-        if (!isDegraded) {
-            weakSelf.imageRequestID = 0;
-        }
-    } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-        if (![assetItem isEqual:_assetItem]) return;
-        if (weakSelf.imageProgressUpdateBlock && progress < 1) {
-            weakSelf.imageProgressUpdateBlock(progress);
-        }
-        
-        if (progress >= 1) {
-            weakSelf.imageRequestID = 0;
-        }
-    } networkAccessAllowed:YES];
+//    __weak __typeof(self) weakSelf = self;
+//    _imageRequestID = [[TZImageManager manager] getPhotoWithAsset:assetItem.asset photoWidth:self.width completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+//        if (![assetItem isEqual:_assetItem]) return;
+//        self.imgView.image = photo;
+//        if (weakSelf.imageProgressUpdateBlock) {
+//            weakSelf.imageProgressUpdateBlock(1);
+//        }
+//        if (!isDegraded) {
+//            weakSelf.imageRequestID = 0;
+//        }
+//    } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+//        if (![assetItem isEqual:_assetItem]) return;
+//        if (weakSelf.imageProgressUpdateBlock && progress < 1) {
+//            weakSelf.imageProgressUpdateBlock(progress);
+//        }
+//
+//        if (progress >= 1) {
+//            weakSelf.imageRequestID = 0;
+//        }
+//    } networkAccessAllowed:YES];
 }
 
 - (void)setPlayIconHidden:(TZAssetModel *)assetItem {
-    if (assetItem.type == TZAssetModelMediaTypeVideo) {
-        _iconPlayImgView.hidden = NO;
-    }
-    else {
-        _iconPlayImgView.hidden = YES;
-    }
+//    if (assetItem.type == TZAssetModelMediaTypeVideo) {
+//        _iconPlayImgView.hidden = NO;
+//    }
+//    else {
+//        _iconPlayImgView.hidden = YES;
+//    }
 }
 
 - (void)prepareForReuse {
@@ -123,22 +123,22 @@ static CGFloat const kPlayIconLength = 44.f;
 }
 
 - (void)showVideoWithPlayerLayer:(AVPlayerLayer *)playerLayer {
-    if (_assetItem.type == TZAssetModelMediaTypeVideo) {
-        _iconPlayImgView.hidden = YES;
-        _playlayer.hidden = NO;
-        _playlayer = playerLayer;
-        [self.imgBgView.layer addSublayer:_playlayer];
-        _playlayer.frame = self.imgView.bounds;
-    }
+//    if (_assetItem.type == TZAssetModelMediaTypeVideo) {
+//        _iconPlayImgView.hidden = YES;
+//        _playlayer.hidden = NO;
+//        _playlayer = playerLayer;
+//        [self.imgBgView.layer addSublayer:_playlayer];
+//        _playlayer.frame = self.imgView.bounds;
+//    }
 }
 
 - (void)showImg {
-    if (_assetItem.type == TZAssetModelMediaTypeVideo) {
-        _iconPlayImgView.hidden = NO;
-        _playlayer.hidden = YES;
-        [_playlayer removeFromSuperlayer];
-        _playlayer = nil;
-    }
+//    if (_assetItem.type == TZAssetModelMediaTypeVideo) {
+//        _iconPlayImgView.hidden = NO;
+//        _playlayer.hidden = YES;
+//        [_playlayer removeFromSuperlayer];
+//        _playlayer = nil;
+//    }
 }
 
 @end

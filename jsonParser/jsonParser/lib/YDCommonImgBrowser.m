@@ -14,8 +14,6 @@
 //#import "YDConstant.h"
 
 #import "YDBrowserImgModel.h"
-
-#import "TZAssetModel.h"
 #import "YDAlbumService.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -135,25 +133,25 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
             if (index == YDPreviewActionTypeLeft) {
                 __block UIImage *img;
                 TZAssetModel *asset = strongSelf.assets[strongSelf.currentIndex];
-                if (asset.type == TZAssetModelMediaTypeVideo) {
-//                    [strongSelf yd_popText:@"亲，暂时不支持视频编辑"];
-                    return ;
-                }
+//                if (asset.type == TZAssetModelMediaTypeVideo) {
+////                    [strongSelf yd_popText:@"亲，暂时不支持视频编辑"];
+//                    return ;
+//                }
 //                dispatch_async(dispatch_get_main_queue(), ^{
 //                    [strongSelf yd_isLoading];
 //                });
-                [[TZImageManager manager] getOriginalPhotoWithAsset:asset.asset completion:^(UIImage *photo, NSDictionary *info) {
-                    BOOL flag = [info[PHImageResultIsDegradedKey] boolValue];
-                    if (!flag) {
-                        img = photo;
-                        dispatch_async(dispatch_get_main_queue(), ^{
+//                [[TZImageManager manager] getOriginalPhotoWithAsset:asset.asset completion:^(UIImage *photo, NSDictionary *info) {
+//                    BOOL flag = [info[PHImageResultIsDegradedKey] boolValue];
+//                    if (!flag) {
+//                        img = photo;
+//                        dispatch_async(dispatch_get_main_queue(), ^{
 //                            [strongSelf yd_endLoading];
 //                            WBGImageEditor *vc = [[WBGImageEditor alloc] initWithImage:[YDTools compressImageTo1M:img] delegate:strongSelf dataSource:strongSelf];
 //                            [strongSelf presentViewController:vc animated:YES completion:nil];
 //                            [[YDStatisticsMgr sharedMgr] eventPreviewImgEditor];
-                        });
-                    }
-                }];
+//                        });
+//                    }
+//                }];
             }
             else {
                 [OBTAIN_MGR(YDAlbumMgr).selectedAssets removeAllObjects];
@@ -181,24 +179,24 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 //}
 
 - (void)updateEditorHiddenWithItem:(TZAssetModel *)currentAsset {
-    if (currentAsset.type == TZAssetModelMediaTypeVideo) {
-        [self.view.bottomView updateLeftBtnHidden:YES];
-    }
-    else {
-        [self.view.bottomView updateLeftBtnHidden:NO];
-    }
+//    if (currentAsset.type == TZAssetModelMediaTypeVideo) {
+//        [self.view.bottomView updateLeftBtnHidden:YES];
+//    }
+//    else {
+//        [self.view.bottomView updateLeftBtnHidden:NO];
+//    }
 }
 
 - (void)updateRightItemHiddenWithItem:(TZAssetModel *)currentAsset {
-    if ( ((currentAsset.type == TZAssetModelMediaTypeVideo) && (_type == YDImgsTypeAssetImg))
-        ||((currentAsset.type == TZAssetModelMediaTypePhoto) &&(_type ==YDImgsTypeAssetVideo)) ) {
-        [self updateRightItemWithStatus:NO];
-    }
-    else {
-        [self updateRightItemWithStatus:YES];
-        _isCurrentImgSelected = currentAsset.isSelected;
-        [self updateImgWithFlag:_isCurrentImgSelected];
-    }
+//    if ( ((currentAsset.type == TZAssetModelMediaTypeVideo) && (_type == YDImgsTypeAssetImg))
+//        ||((currentAsset.type == TZAssetModelMediaTypePhoto) &&(_type ==YDImgsTypeAssetVideo)) ) {
+//        [self updateRightItemWithStatus:NO];
+//    }
+//    else {
+//        [self updateRightItemWithStatus:YES];
+//        _isCurrentImgSelected = currentAsset.isSelected;
+//        [self updateImgWithFlag:_isCurrentImgSelected];
+//    }
 }
 
 - (void)updateRightItemWithStatus:(BOOL)status {
@@ -295,9 +293,9 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
             TZAssetModel *asset = _assets[indexPath.item];
             [cell setImageProgressUpdateBlock:nil];
             cell.assetItem = asset;
-            if (_assets.count ==1 && asset.type == TZAssetModelMediaTypeVideo) {
-                [self scrollViewDidScroll:self.view.collectionView];
-            }
+//            if (_assets.count ==1 && asset.type == TZAssetModelMediaTypeVideo) {
+//                [self scrollViewDidScroll:self.view.collectionView];
+//            }
         }
             break;
         default:
@@ -307,9 +305,9 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
     __weak typeof (self) wSelf = self;
     __weak typeof (cell) weakCell = cell;
     cell.longPressBlock = ^{
-        if (weakCell.assetItem && weakCell.assetItem.type == TZAssetModelMediaTypeVideo) {
-            return ;
-        }
+//        if (weakCell.assetItem && weakCell.assetItem.type == TZAssetModelMediaTypeVideo) {
+//            return ;
+//        }
         currentImg = weakCell.imgView.image;
         if (!currentImg) {
 //            [wSelf yd_popText:@"当前图片类型暂时不支持保存"];
@@ -478,19 +476,19 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
     //    视频播放
     NSArray *cells = self.view.collectionView.visibleCells;
     for (YDImgBrowserCCell *cell in cells) {
-        if ([cell.assetItem isEqual:currentAsset]) {
-            [self _playWithCurrentCell:cell];
-        }
-        else {
-            [cell showImg];
-//            [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
-        }
+//        if ([cell.assetItem isEqual:currentAsset]) {
+//            [self _playWithCurrentCell:cell];
+//        }
+//        else {
+//            [cell showImg];
+////            [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
+//        }
     }
 }
 
 - (void)_playWithCurrentCell:(YDImgBrowserCCell *)cell {
-    if (cell.assetItem.type == TZAssetModelMediaTypeVideo) {
-        _hasPlay = YES;
+//    if (cell.assetItem.type == TZAssetModelMediaTypeVideo) {
+//        _hasPlay = YES;
 //        [OBTAIN_MGR(YDCommonVideoPlayerService) playWithAsset:cell.assetItem.asset then:^(AVPlayerLayer *playerLayer,AVPlayerItemStatus status) {
 //            if (status ==AVPlayerItemStatusReadyToPlay) {
 //                [cell showVideoWithPlayerLayer:playerLayer];
@@ -499,7 +497,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 //                [cell showImg];
 //            }
 //        }];
-    }
+//    }
 }
 
 - (void)saveImgWithImg:(UIImage *)img {
@@ -540,32 +538,32 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 
 - (void)onImgSelectedAction:(UIBarButtonItem *)barItem {
     TZAssetModel *currentAsset = _assets[_currentIndex];
-    if (_type == YDImgsTypeAssetVideo && !currentAsset.isSelected) {
-//        [self yd_popText:@"亲!当前只可以选择一个视频"];
-        return;
-    }
+//    if (_type == YDImgsTypeAssetVideo && !currentAsset.isSelected) {
+////        [self yd_popText:@"亲!当前只可以选择一个视频"];
+//        return;
+//    }
     
     _isCurrentImgSelected = !_isCurrentImgSelected;
-    currentAsset.isSelected = _isCurrentImgSelected;
+//    currentAsset.isSelected = _isCurrentImgSelected;
 
     //    deal with data & filter type
-    if (currentAsset.isSelected) {
-        [_selectedAssets addObject:currentAsset];
-        if (_type == YDImgsTypeAssetNotSure) {
-            if (currentAsset.type == TZAssetModelMediaTypePhoto) {
-                _type = YDImgsTypeAssetImg;
-            }
-            if (currentAsset.type == TZAssetModelMediaTypeVideo) {
-                _type =YDImgsTypeAssetVideo;
-            }
-        }
-    }
-    else {
-        [_selectedAssets removeObject:currentAsset];
-        if (_selectedAssets.count <=0) {
-            _type = YDImgsTypeAssetNotSure;
-        }
-    }
+//    if (currentAsset.isSelected) {
+//        [_selectedAssets addObject:currentAsset];
+//        if (_type == YDImgsTypeAssetNotSure) {
+//            if (currentAsset.type == TZAssetModelMediaTypePhoto) {
+//                _type = YDImgsTypeAssetImg;
+//            }
+//            if (currentAsset.type == TZAssetModelMediaTypeVideo) {
+//                _type =YDImgsTypeAssetVideo;
+//            }
+//        }
+//    }
+//    else {
+//        [_selectedAssets removeObject:currentAsset];
+//        if (_selectedAssets.count <=0) {
+//            _type = YDImgsTypeAssetNotSure;
+//        }
+//    }
     
     [self updateImgWithFlag:_isCurrentImgSelected];
     [self _updateRightBottomBtn];

@@ -7,8 +7,8 @@
 //  Copyright © 2018年 yuedong. All rights reserved.
 //
 
+#import <Photos/Photos.h>
 #import "YDAlbumTCell.h"
-#import "TZAssetModel.h"
 #import "YDAlbumService.h"
 
 @interface YDAlbumTCell ()
@@ -71,12 +71,12 @@ static const CGFloat kAssetNumLabelLeftSpace = 12.f;
 
 - (void)setModel:(TZAlbumModel *)model {
     _model = model;
-    self.titleLabel.text = model.name;
-    self.assetNumLabel.text = [NSString stringWithFormat:@"%zd",model.count];
-    
-    [[TZImageManager manager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
-        self.imgView.image = postImage;
-    }];
+//    self.titleLabel.text = model.name;
+//    self.assetNumLabel.text = [NSString stringWithFormat:@"%zd",model.count];
+//    
+//    [[TZImageManager manager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
+//        self.imgView.image = postImage;
+//    }];
 }
 
 @end
