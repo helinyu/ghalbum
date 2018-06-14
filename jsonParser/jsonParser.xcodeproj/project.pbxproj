@@ -245,6 +245,7 @@
 		04882A5C20D1238600E0E762 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				04882ABC20D2090E00E0E762 /* vc */,
 				04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */,
 				04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */,
 				04882AB320D1336800E0E762 /* YDAlbumTCell.h */,
@@ -284,8 +285,6 @@
 				04882A7E20D1293300E0E762 /* YDBaseView.m */,
 				04882A6620D124DF00E0E762 /* YDCommonImgBrowserView.h */,
 				04882A6720D124DF00E0E762 /* YDCommonImgBrowserView.m */,
-				04882A6120D1241000E0E762 /* YDImgPickerViewController.h */,
-				04882A6220D1241000E0E762 /* YDImgPickerViewController.m */,
 				04882A6320D1241000E0E762 /* YDPhotoTakeViewController.h */,
 				04882A6020D1240F00E0E762 /* YDPhotoTakeViewController.m */,
 				04882A9120D12FCF00E0E762 /* YDPhotoTakenContentView.h */,
@@ -307,6 +306,15 @@
 				04882A7420D1271700E0E762 /* GHIDefine.pch */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		04882ABC20D2090E00E0E762 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				04882A6120D1241000E0E762 /* YDImgPickerViewController.h */,
+				04882A6220D1241000E0E762 /* YDImgPickerViewController.m */,
+			);
+			path = vc;
 			sourceTree = "<group>";
 		};
 		CC43ED9C8E8481391F62F313 /* Pods */ = {

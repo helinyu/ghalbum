@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "YDImgPickerViewController.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -85,6 +86,12 @@
     NSData *jsonData1 = [NSJSONSerialization dataWithJSONObject:resultDic1 options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonStr = [[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];
     NSLog(@"gh- json string; %@",jsonStr);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    YDImgPickerViewController *vc = [YDImgPickerViewController new];
+    [vc configureSelectedAssets:@[] then:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

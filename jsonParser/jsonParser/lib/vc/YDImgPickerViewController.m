@@ -57,16 +57,10 @@ typedef NS_ENUM(NSInteger, YDAssetSelectedType) {
 @property (nonatomic, strong) NSMutableArray<TZAssetModel *> *allSelctedAssets;
 
 @property (nonatomic, assign) YDCommingSourceType previewType;
-
-//  version 2.0
 @property (nonatomic, strong) TZAlbumModel *selectedAlbum;
-
-//vesion 3.0
 @property (nonatomic, strong) NSArray<TZAssetModel *> *videoAssets;
 @property (nonatomic, assign) BOOL isVideoFilter;
-
 @property (nonatomic, assign) BOOL canLoadVideo;
-//@property (nonatomic, strong) NSArray *selectedAssets;
 
 @end
 
@@ -138,6 +132,8 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  */
 - (void)msDataInit {
     
+    self.navigationController.navigationItem.title = @"图片选择";
+    self.title = @"图片选择";
     [self loadAlbumsInit];
     [self someBaseDataInit];
     [self bottomViewInit];
@@ -375,24 +371,24 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
             TZAssetModel *firstAsset = wSelf.allSelctedAssets.firstObject;
             if (!asset.isSelected && firstAsset) {
                 if (wSelf.allSelctedAssets.count >= kMaxChoiceImgNum) {
-//                    [wSelf yd_popText:@"最多只能够选择9张"];
+                    NSLog(@"最多只能够选择9张");
                     return ;
                 }
                 if (firstAsset.type ==TZAssetModelMediaTypeVideo){
                     if (asset.type == TZAssetModelMediaTypeVideo) {
-//                        [wSelf yd_popText:@"最多选择一个视频"];
+                        NSLog(@"最多选择一个视频");
                     }
                     else if (asset.type == TZAssetModelMediaTypePhoto) {
-//                        [wSelf yd_popText:MSLocalizedString(@"图片和视频不能够同时选择", nil)];
+                        NSLog(@"图片和视频不能够同时选择");
                     }
                     else {
-//                        [wSelf yd_popText:MSLocalizedString(@"您已经选择了视频类型并且只可以选择一个视频", nil)];
+                        NSLog(@"您已经选择了视频类型并且只可以选择一个视频");
                     }
                     return;
                 }
                
                 if ((firstAsset.type ==TZAssetModelMediaTypePhoto) && (asset.type == TZAssetModelMediaTypeVideo)){
-//                    [wSelf yd_popText:@"图片和视频不能够同时选择"];
+                    NSLog(@"图片和视频不能够同时选择");
                     return;
                 }
             }
@@ -400,15 +396,14 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
             if (asset.type ==TZAssetModelMediaTypeVideo){
                 PHAsset *phAsset =asset.asset;
                 if (phAsset.duration > kVideoMaxDuration) {
-//                    [wSelf yd_popText:@"视频时长不能长于3分钟"];
+                    NSLog(@"视频时长不能长于3分钟");
                     return;
                 }
                 if (phAsset.duration <=kVideoMinDuration) {
-//                    [wSelf yd_popText:@"视频时长不能小于3秒"];
+                    NSLog(@"视频时长不能小于3秒");
                     return;
                 }
             }
-
             
             if (!asset.isSelected) {
                 asset.isSelected = YES;
@@ -463,7 +458,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0 && !_isVideoFilter) {
         if ([self isVideoSelected]) {
-//            [self yd_popText:@"您已经选择了视频，暂时不支持拍照"];
+            NSLog(@"您已经选择了视频，暂时不支持拍照");
             return;
         }
         
@@ -512,9 +507,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }
 
 - (void)_alertCamaraInfoWhileNotAuthorized {
-//    [self yd_alertSingle:@"请打开相机权限" message:@"您已经禁止了拍照权限，请前往设置->隐私->相机授权应用拍照权限" configure:^(MMPopupItem *item) {
-//        MSLogD(@"gh- 确定");
-//    }];
+    NSLog(@"您已经禁止了拍照权限，请前往设置->隐私->相机授权应用拍照权限");
 }
 
 - (void)_toPhotoTakenVC {
@@ -554,17 +547,17 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 //}
 
 - (CGFloat)_titleViewWidthWithText:(NSString *)text {
-//    CGFloat textW = [NSString yd_textWidthWithText:MSLocalizedString(text, nil) rSize:18.f];
+//    CGFloat textW = [NSString yy_textWidthWithText:text rSize:18.f];
 //    CGFloat imgW = 13.f;
 //    CGFloat textToImgW = 6.f;
 //    CGFloat titleViewW = textW + imgW + textToImgW;
 //    return titleViewW;
-    return 0.f;
+    return 40.f;
 }
 
 - (void)yd_popUp {
     [self dismissViewControllerAnimated:YES completion:nil];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:ydCircleEditorBack object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"yd.circle.editor.back" object:nil];
 }
 
 - (void)checkAllSelectedAssets {
@@ -584,12 +577,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 
 - (void)reloadCollectionView {
     [self checkAllSelectedAssets];
-//    dispatch_async_on_main_queue(^{
-//        if (self.yd_isLoading) {
-//            [self yd_endLoading];
-//        }
-        [self.view.collectionView reloadData];
-//    });
+    [self.view.collectionView reloadData];
 }
 
 - (void)reloadTableView {
