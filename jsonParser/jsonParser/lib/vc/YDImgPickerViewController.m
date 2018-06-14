@@ -14,25 +14,19 @@
 
 #import "YDImgPickerCCell.h"
 #import "YDImgPickerTakeCCell.h"
-//#import "YDImgTitleIconTCell.h"
+#import "YDImgTitleIconTCell.h"
 #import "YDPreviewBottomView.h"
 #import "YDPickerBottomView.h"
 #import "YDImgPickerVCTitleView.h"
 
 #import "YDObtainManagerMgr.h"
-//#import "YDAlbumMgr.h"
-//#import "NSString+YDAdd.h"
-//#import "YDAlbumService.h"
+#import "YDAlbumMgr.h"
+#import "YDAlbumService.h"
 #import "YDAlbumTCell.h"
 
 #import "YDPhotoTakeViewController.h"
-//#import "YDCircleEditorViewController.h"
 
 #import "YDAlbumService.h"
-//#import "YDCommonImgBrowserProtocol.h"
-//#import "BHServiceManager.h"
-//#import "MSDefine.h"
-//#import "YDPreference.h"
 #import "YDCommonImgBrowser.h"
 
 #define kCellLength (SCREEN_WIDTH_V0 -(kSpaceLength * (kCCellNumOfALine -1)))/kCCellNumOfALine

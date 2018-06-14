@@ -11,8 +11,6 @@
 #import "YDPhotoTakenBottomView.h"
 #import "YDPhotoTakenContentView.h"
 #import "YDPhotoHasTakeView.h"
-//#import "YDCircleEditorViewController.h"
-//#import "WBGImageEditor.h"
 #import "YDObtainManagerMgr.h"
 #import "YDLeftRightBtnView.h"
 //#import "WBGImageEditor.h"
@@ -24,9 +22,6 @@
 #import "YDAlbumService.h"
 #import "YDPhotoTakenBottomView.h"
 #import "YDPhotoTakenView.h"
-//#import "YDTools.h"
-//#import "UIImage+YDAdd.h"
-//#import "YDTools.h"
 
 @interface YDPhotoTakeViewController ()
 //<WBGImageEditorDelegate,WBGImageEditorDataSource>
@@ -34,12 +29,10 @@
 @property (nonatomic, strong) YDPhotoTakenBottomView *beforeTakenBottomView;
 @property (nonatomic, strong) YDPhotoHasTakeView *afterTakenBottomView;
 @property (nonatomic, strong) UIView *bottomWrapperView;
-
 @property (nonatomic, strong) YDPhotoTakenContentView *contentView;
 
 @property (nonatomic, strong) UIImage *takeImg;
 @property (nonatomic, assign) BOOL isCameraFront;
-
 @property (nonatomic, assign) BOOL isPreviewImg;
 
 @end
