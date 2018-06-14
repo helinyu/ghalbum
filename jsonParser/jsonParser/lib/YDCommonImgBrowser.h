@@ -40,9 +40,13 @@ typedef NS_ENUM(NSInteger, YDNavBarRightItemType) {
 - (void)replaceBeforeEditorAsset:(TZAssetModel *)asset0 withAsset:(TZAssetModel *)asset1;
 - (void)replaceBeforeEditorAssetATSelected:(TZAssetModel *)asset0 withAsset:(TZAssetModel *)asset1;
 
-//- (void)configureWithImgs:(NSArray<UIImage *> *) imgs toIndex:(NSInteger)toIndex;
-//- (void)configureWithImgNames:(NSArray<NSString *> *)imgNames toIndex:(NSInteger)toIndex;
-//- (void)configureWithImgUrlStrings:(NSArray<NSString *> *)imgUrlStrings toIndex:(NSInteger)toIndex;
-//- (void)configureWithImgs:(NSArray *)imgs type:(YDImgsType)type toIndex:(NSInteger)toIndex;
-//- (void)configureWithBrowserImgs:(NSArray <YDBrowserImgModel *> *)imgs toIndex:(NSInteger)toIndex;
+- (void)configureWithImgs:(NSArray<UIImage *> *) imgs toIndex:(NSInteger)toIndex;
+- (void)configureWithImgNames:(NSArray<NSString *> *)imgNames toIndex:(NSInteger)toIndex;
+- (void)configureWithImgUrlStrings:(NSArray<NSString *> *)imgUrlStrings toIndex:(NSInteger)toIndex;
+- (void)configureWithImgs:(NSArray *)imgs type:(YDImgsType)type toIndex:(NSInteger)toIndex;
+- (void)configureWithBrowserImgs:(NSArray <YDBrowserImgModel *> *)imgs toIndex:(NSInteger)toIndex;
+
+// change for the TZAsset
+- (void)configureWithTotalImgs:(NSArray *)imgs selectedImgs:(NSArray *)selectedImgs toIndex:(NSInteger)toIndex type:(YDImgsType)type rightItemType:(YDNavBarRightItemType)rightItemType;
+
 @end

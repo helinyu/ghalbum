@@ -44,7 +44,7 @@
 
 @end
 
-static const CGFloat kBottomViewH = f100;
+static const CGFloat kBottomViewH = 100.f;
 
 @implementation YDPhotoTakeViewController
 
@@ -53,9 +53,7 @@ static const CGFloat kBottomViewH = f100;
  */
 - (void)msComInit {
     
-    [super msComInit];
-    
-    [self yd_navBarInitWithStyle:YDNavBarStyleGray];
+//    [self yd_navBarInitWithStyle:YDNavBarStyleGray];
     
     _bottomWrapperView = [UIView new];
     [self.view addSubview:_bottomWrapperView];
@@ -70,18 +68,18 @@ static const CGFloat kBottomViewH = f100;
     if (IS_SCREEN_SIZE_5) {
         contentViewH = SCREEN_HEIGHT_V0 - YDTopLayoutH - DWF(kBottomViewH + 34.f);
     }
-    _contentView = [[YDPhotoTakenContentView alloc] initWithFrame:CGRectMake(X0, YDTopLayoutH, SCREEN_WIDTH_V0, contentViewH)];
+    _contentView = [[YDPhotoTakenContentView alloc] initWithFrame:CGRectMake(0.f, YDTopLayoutH, SCREEN_WIDTH_V0, contentViewH)];
     
     [self.view addSubview:_contentView];
     
     [self createViewConstraints];
 }
 
-- (void)msNavBarInit:(YDNavigationBar *)navBar {
-    self.navBar.topItem.title = MSLocalizedString(@"拍照", nil);
-    self.navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_login_back"] style:UIBarButtonItemStyleDone target:self action:@selector(yd_popUp)];
-    self.navBar.topItem.leftBarButtonItem.tintColor = YDC_TEXT;
-}
+//- (void)msNavBarInit:(YDNavigationBar *)navBar {
+//    self.navBar.topItem.title = MSLocalizedString(@"拍照", nil);
+//    self.navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_login_back"] style:UIBarButtonItemStyleDone target:self action:@selector(yd_popUp)];
+//    self.navBar.topItem.leftBarButtonItem.tintColor = YDC_TEXT;
+//}
 
 /**
  *  create constraints
@@ -107,28 +105,24 @@ static const CGFloat kBottomViewH = f100;
         make.height.mas_equalTo(DEVICE_WIDTH_OF(kBottomViewH));
     }];
     
-    [super createViewConstraints];
 }
 
 /**
  *  notification bind & touch events bind & delegate bind
  */
 - (void)msBind {
-    [super msBind];
 
     __weak typeof (self) wSelf = self;
     _beforeTakenBottomView.actionBlock = ^(YDPhotoTakeActionType type) {
-        MSLogD(@"before type : %ld", (long)type);
 
-        TZAssetAuthorizationStatus status = [TZImageManager getCameraAuthorStatus];
-        if (status == TZAssetAuthorizationStatusNotAuthorized) {
-            [wSelf yd_alertConfirm:@"亲！您已经禁止了访问拍照权限" message:@"请前往设置->隐私->相机获取相册权限"];
-            [wSelf.navigationController popViewControllerAnimated:YES];
-            return ;
-        }
+//        TZAssetAuthorizationStatus status = [TZImageManager getCameraAuthorStatus];
+//        if (status == TZAssetAuthorizationStatusNotAuthorized) {
+//            [wSelf yd_alertConfirm:@"亲！您已经禁止了访问拍照权限" message:@"请前往设置->隐私->相机获取相册权限"];
+//            [wSelf.navigationController popViewControllerAnimated:YES];
+//            return ;
+//        }
         
         if (type == YDPhotoTakeActionTypeTake) {
-            [[YDStatisticsMgr sharedMgr] eventPhotoTaken];
             [wSelf.contentView.takenView takePhotoThen:^(NSData *imgData, UIImage *img) {
                 if (!img) {
                     return ;
@@ -146,18 +140,18 @@ static const CGFloat kBottomViewH = f100;
                 //有待不同的相机进行适配
                 CGRect newFrame = CGRectMake(0.f, (YDTopLayoutH +18.f) *ratio, img.size.width, imgHeight);
                 
-                UIImage *customImg = [YDTools fixOrientation:img];
+//                UIImage *customImg = [YDTools fixOrientation:img];
                 
-                if (wSelf.isCameraFront) {
-                    customImg = [customImg yd_imageByFlipHorizontal];
-                }
-                
-                customImg = [YDTools cutImage:customImg withRect:newFrame];
-                wSelf.takeImg = customImg;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    wSelf.contentView.displayImgView.image = customImg;
-                    _takeImg = customImg;
-                });
+//                if (wSelf.isCameraFront) {
+//                    customImg = [customImg yd_imageByFlipHorizontal];
+//                }
+//
+//                customImg = [YDTools cutImage:customImg withRect:newFrame];
+//                wSelf.takeImg = customImg;
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    wSelf.contentView.displayImgView.image = customImg;
+//                    _takeImg = customImg;
+//                });
             }];
         }
         else if (type == YDPhotoTakeActionTypeToggle) {
@@ -165,83 +159,77 @@ static const CGFloat kBottomViewH = f100;
             sender.tag = 1;
             [wSelf.contentView.takenView toggleCamera];
             wSelf.isCameraFront = !wSelf.isCameraFront;
-            [[YDStatisticsMgr sharedMgr] eventPhotoTakenToggleCamera];
         }else {
-            [wSelf yd_popUp];
-            [[YDStatisticsMgr sharedMgr] eventPhotoTakenback];
+//            [wSelf yd_popUp];
         }
     };
     
     _afterTakenBottomView.actionBlock = ^(YDPhotoTakeActionType type) {
         __strong typeof (wSelf) strongSelf = wSelf;
-        MSLogD(@"after type : %ld",(long)type);
-        [strongSelf yd_startLoading];
         
         if (type == YDPhotoHasTakeActionTypeCancel) {
             strongSelf.isPreviewImg = NO;
             [strongSelf displayViewWithPreviewFlag:strongSelf.isPreviewImg];
             [strongSelf.contentView.takenView startRunning];
-            if ([strongSelf yd_isLoading]) {
-                [strongSelf yd_endLoading];
-            }
+//            if ([strongSelf yd_isLoading]) {
+//                [strongSelf yd_endLoading];
+//            }
         }
         else {
-            TZAssetAuthorizationStatus status = [TZImageManager getAuthorizationStatus];
-            if (status == TZAssetAuthorizationStatusNotAuthorized) {
-                [wSelf yd_alertConfirm:@"亲！您已经禁止了访问相册权限" message:@"请前往设置->隐私->相册获取相册权限"];
-                if ([strongSelf yd_isLoading]) {
-                    [strongSelf yd_endLoading];
-                }
-                return ;
-            }
+//            TZAssetAuthorizationStatus status = [TZImageManager getAuthorizationStatus];
+//            if (status == TZAssetAuthorizationStatusNotAuthorized) {
+//                [wSelf yd_alertConfirm:@"亲！您已经禁止了访问相册权限" message:@"请前往设置->隐私->相册获取相册权限"];
+//                if ([strongSelf yd_isLoading]) {
+//                    [strongSelf yd_endLoading];
+//                }
+//                return ;
+//            }
             
             if (type == YDPhotoHasTakeActionTypeEdit) {
-                if ([strongSelf yd_isLoading]) {
-                    [strongSelf yd_endLoading];
-                }
-                strongSelf.takeImg = [YDTools compressImageTo1M:strongSelf.takeImg];
-                WBGImageEditor *vc = [[WBGImageEditor alloc] initWithImage:strongSelf.takeImg delegate:strongSelf dataSource:wSelf];
-                [strongSelf presentViewController:vc animated:YES completion:nil];
-                [[YDStatisticsMgr sharedMgr] eventPhotoTakenEditor];
+//                if ([strongSelf yd_isLoading]) {
+//                    [strongSelf yd_endLoading];
+//                }
+//                strongSelf.takeImg = [YDTools compressImageTo1M:strongSelf.takeImg];
+//                WBGImageEditor *vc = [[WBGImageEditor alloc] initWithImage:strongSelf.takeImg delegate:strongSelf dataSource:wSelf];
+//                [strongSelf presentViewController:vc animated:YES completion:nil];
             }
             else if (type == YDPhotoHasTakeActionTypeNext) {
                 {
                     if (OBTAIN_MGR(YDAlbumMgr).selectedAssets.count >= kMaxChoiceImgNum) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf yd_popText:@"图片选择数目已经达到上限"];
-                            if ([strongSelf yd_isLoading]) {
-                                [strongSelf yd_endLoading];
-                            }
+//                            [strongSelf yd_popText:@"图片选择数目已经达到上限"];
+//                            if ([strongSelf yd_isLoading]) {
+//                                [strongSelf yd_endLoading];
+//                            }
                         });
                         return;
                     }
                     [[TZImageManager manager] savePhotoWithImage:strongSelf.takeImg completion:^(NSError *error) {
                         if (error) {
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [strongSelf yd_popText:@"保存图片失败"];
-                                if ([strongSelf yd_isLoading]) {
-                                    [strongSelf yd_endLoading];
-                                }
+//                                [strongSelf yd_popText:@"保存图片失败"];
+//                                if ([strongSelf yd_isLoading]) {
+//                                    [strongSelf yd_endLoading];
+//                                }
                             });
                             return ;
                         }
                         [OBTAIN_MGR(YDAlbumMgr) loadLastAssetComplete:^(TZAssetModel *lastAsset) {
                             if (!lastAsset) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    [strongSelf yd_popText:@"获取最新图片失败"];
-                                    if ([strongSelf yd_isLoading]) {
-                                        [strongSelf yd_endLoading];
-                                    }
+//                                    [strongSelf yd_popText:@"获取最新图片失败"];
+//                                    if ([strongSelf yd_isLoading]) {
+//                                        [strongSelf yd_endLoading];
+//                                    }
                                 });
                                 return ;
                             }
-                            [[YDStatisticsMgr sharedMgr] eventPhotoTakenNext];
                             lastAsset.isSelected = YES;
                             [OBTAIN_MGR(YDAlbumMgr).selectedAssets addObject:lastAsset];
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                if ([strongSelf yd_isLoading]) {
-                                    [strongSelf yd_endLoading];
-                                }
+//                                if ([strongSelf yd_isLoading]) {
+//                                    [strongSelf yd_endLoading];
+//                                }
                                 [wSelf dismissViewControllerAnimated:YES completion:nil];
                             });
                         }];
@@ -255,19 +243,18 @@ static const CGFloat kBottomViewH = f100;
 - (void)adaptNavigationViewControllersWithVC:(UIViewController *)vc {
     NSMutableArray *vcs = @[].mutableCopy;
     [vcs addObjectsFromArray:self.navigationController.viewControllers];
-    for (NSInteger index = vcs.count- i1; index <vcs.count; index--) {
-        MSLogD(@"vc :%@",vcs[index]);
-        if (![vcs[index] isKindOfClass:[YDCircleRootViewController class]]) {
-            [vcs removeObjectAtIndex:index];
-        }else {
-            break;
-        }
+    for (NSInteger index = vcs.count- 1; index <vcs.count; index--) {
+//        if (![vcs[index] isKindOfClass:[YDCircleRootViewController class]]) {
+//            [vcs removeObjectAtIndex:index];
+//        }else {
+//            break;
+//        }
     }
     if (vcs.count > 0) {
         [vcs addObject:vc];
         self.navigationController.viewControllers = vcs;
     }else {
-        [vcs addObject:self.navigationController.viewControllers[kIndex0]];
+        [vcs addObject:self.navigationController.viewControllers[0]];
         [vcs addObject:vc];
         self.navigationController.viewControllers = vcs;
     }
@@ -277,7 +264,6 @@ static const CGFloat kBottomViewH = f100;
  *  data init
  */
 - (void)msDataInit {
-    [super msDataInit];
     
     [self waterImgInit];
 }
@@ -286,7 +272,6 @@ static const CGFloat kBottomViewH = f100;
  *  static style
  */
 - (void)msStyleInit {
-    [super msStyleInit];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -295,18 +280,23 @@ static const CGFloat kBottomViewH = f100;
  *  language init
  */
 - (void)msLangInit {
-    [super msLangInit];
 }
 
 #pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self msComInit];
+    [self msDataInit];
+    [self msBind];
+    [self msStyleInit];
+    [self msLangInit];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    MSLogD(@"gh- viewWillAppear");
     [self displayViewWithPreviewFlag:_isPreviewImg];
     if (!_isPreviewImg) {
         [self.contentView.takenView startRunning];
@@ -317,7 +307,6 @@ static const CGFloat kBottomViewH = f100;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    MSLogD(@"gh- viewDidAppear");
 }
 
 - (void)viewDidLayoutSubviews {
@@ -335,7 +324,7 @@ static const CGFloat kBottomViewH = f100;
 }
 
 - (void)waterImgInit {
-    [[YDWatermarkMgr sharedMgr] netLoadWalkWaterMakerImgs:nil];
+//    [[YDWatermarkMgr sharedMgr] netLoadWalkWaterMakerImgs:nil];
 }
 
 #pragma mark -- load next img
@@ -385,7 +374,6 @@ static const CGFloat kBottomViewH = f100;
 }
 
 - (void)dealloc {
-    MSLogD(@"YDPhotoTakeViewController dealloc");
 }
 
 @end

@@ -33,6 +33,7 @@
 //#import "BHServiceManager.h"
 //#import "MSDefine.h"
 //#import "YDPreference.h"
+#import "YDCommonImgBrowser.h"
 
 #define kCellLength (SCREEN_WIDTH_V0 -(kSpaceLength * (kCCellNumOfALine -1)))/kCCellNumOfALine
 
@@ -77,7 +78,7 @@ static NSString *const kTitleText = @"相机胶卷";
 static NSString *const kVidelTitle = @"视频";
 
 static const CGFloat kTableViewCellH = 96.f;
-static const CGFloat kSpaceLength = f1;
+static const CGFloat kSpaceLength = 1.f;
 static const CGFloat kCCellNumOfALine = 3;
 
 static NSInteger const kVideoMaxDuration = 180;
@@ -92,7 +93,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 - (void)configureSelectedAssets:(NSArray *)assets then:(void(^)(NSArray *assets, BOOL change))then {
     _allSelctedAssets = @[].mutableCopy;
     [_allSelctedAssets addObjectsFromArray:assets];
-    _canLoadVideo = [[YDPreference sharedUserPreference] boolForKey:[NSString stringWithFormat:@"%@_%@",CIRCLE_VIDEO_AUTH,[YDAppInstance userId]]];
+//    _canLoadVideo = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_%@",CIRCLE_VIDEO_AUTH,[YDAppInstance userId]]];
 }
 
 /**
@@ -100,31 +101,23 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  */
 - (void)msComInit {
     
-    [super msComInit];
-    
-    [self yd_navBarInitWithStyle:YDNavBarStyleGray];
+//    [self yd_navBarInitWithStyle:YDNavBarStyleGray];
     
     [self.view updateDisplayViewWithIsUP:_isAlbumDisplay];
     
     [self createViewConstraints];
-    
-    if (![self yd_isLoading]) {
-        [self yd_startLoading];
-    }
 }
 
 /**
  *  create constraints
  */
 - (void)createViewConstraints {
-    [super createViewConstraints];
 }
 
 /**
  *  notification bind & touch events bind & delegate bind
  */
 - (void)msBind {
-    [super msBind];
 
     {
         [self.view.tableView registerClass:[YDAlbumTCell class] forCellReuseIdentifier:kImgPickerAblumCellTIdentifier];
@@ -144,7 +137,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  *  data init
  */
 - (void)msDataInit {
-    [super msDataInit];
     
     [self loadAlbumsInit];
     [self someBaseDataInit];
@@ -152,74 +144,69 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }
 
 - (void)someBaseDataInit {
-    _leafChoiceNum = kMaxChoiceImgNum - _allSelctedAssets.count;
+//    _leafChoiceNum = kMaxChoiceImgNum - _allSelctedAssets.count;
     [self reloadCollectionView];
 }
 
 - (void)loadAlbumsInit {
-    TZAssetAuthorizationStatus status = [TZImageManager getAuthorizationStatus];
-    switch (status) {
-        case TZAssetAuthorizationStatusNotAuthorized:
-        {
-            NSString *tipString = @"";
-            if (!tipString) {
-                NSDictionary *mainInfoDictionary = [[NSBundle mainBundle] infoDictionary];
-                NSString *appName = [mainInfoDictionary objectForKey:@"CFBundleDisplayName"];
-                if (!appName) {
-                    appName = [mainInfoDictionary objectForKey:(NSString *)kCFBundleNameKey];
-                }
-                tipString = [NSString stringWithFormat:@"请在设备的\"设置-隐私-照片\"选项中，允许%@访问你的手机相册", appName];
-            }
-            [self yd_popText:tipString];
-            return;
-        }
-            break;
-        case TZAssetAuthorizationStatusAuthorized:
-        {
+//    TZAssetAuthorizationStatus status = [TZImageManager getAuthorizationStatus];
+//    switch (status) {
+//        case TZAssetAuthorizationStatusNotAuthorized:
+//        {
+//            NSString *tipString = @"";
+//            if (!tipString) {
+//                NSDictionary *mainInfoDictionary = [[NSBundle mainBundle] infoDictionary];
+//                NSString *appName = [mainInfoDictionary objectForKey:@"CFBundleDisplayName"];
+//                if (!appName) {
+//                    appName = [mainInfoDictionary objectForKey:(NSString *)kCFBundleNameKey];
+//                }
+//                tipString = [NSString stringWithFormat:@"请在设备的\"设置-隐私-照片\"选项中，允许%@访问你的手机相册", appName];
+//            }
+//            [self yd_popText:tipString];
+//            return;
+//        }
+//            break;
+//        case TZAssetAuthorizationStatusAuthorized:
+//        {
             [self loadActualAlbum];
-        }
-            break;
-        case TZAssetAuthorizationStatusNotDetermined:
-        {
-            __weak typeof (self) wSelf = self;
-            [TZImageManager requestAuthorization:^(TZAssetAuthorizationStatus status) {
-                if (status == TZAssetAuthorizationStatusAuthorized) {
-                    [wSelf loadActualAlbum];
-                }
-            }];
-        }
-            break;
-        default:
-        {
-            MSLogD(@"gh- TZAssetAuthorizationStatusNotUsingPhotoKit");
-        }
-            break;
-    }
+//        }
+//            break;
+//        case TZAssetAuthorizationStatusNotDetermined:
+//        {
+//            __weak typeof (self) wSelf = self;
+//            [TZImageManager requestAuthorization:^(TZAssetAuthorizationStatus status) {
+//                if (status == TZAssetAuthorizationStatusAuthorized) {
+//                    [wSelf loadActualAlbum];
+//                }
+//            }];
+//        }
+//            break;
+//        default:
+//        {
+//            MSLogD(@"gh- TZAssetAuthorizationStatusNotUsingPhotoKit");
+//        }
+//            break;
+//    }
 }
 
 - (void)loadActualAlbum {
     _albums = @[].mutableCopy;
-    dispatch_async_on_main_queue(^{
-        if (!self.yd_isLoading) {
-            [self yd_startLoading];
-        };
-    });
 
-    [[TZImageManager manager] getAllAlbums:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAlbumModel *> *models) {
-        [_albums addObjectsFromArray:models];
-        if (_albums.count >0) {
-            _selectedAlbum = _albums.firstObject;
-        }
-        [self reloadAssetsAndReloadView];
-    }];
+//    [[TZImageManager manager] getAllAlbums:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAlbumModel *> *models) {
+//        [_albums addObjectsFromArray:models];
+//        if (_albums.count >0) {
+//            _selectedAlbum = _albums.firstObject;
+//        }
+//        [self reloadAssetsAndReloadView];
+//    }];
 }
 
 - (void)reloadAssetsAndReloadView {
-    [[TZImageManager manager] base_getAssetsFromFetchResult:_selectedAlbum.result allowPickingVideo:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models, NSArray<TZAssetModel *> *videos) {
-        _selectedAlbum.models = models;
-        _selectedAlbum.videos = videos;
-        [self reloadCollectionView];
-    }];
+//    [[TZImageManager manager] base_getAssetsFromFetchResult:_selectedAlbum.result allowPickingVideo:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models, NSArray<TZAssetModel *> *videos) {
+//        _selectedAlbum.models = models;
+//        _selectedAlbum.videos = videos;
+//        [self reloadCollectionView];
+//    }];
 }
 
 - (void)bottomViewInit {
@@ -235,14 +222,14 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     }
     
     [self.view.pickerButtomView configureLeftBtnTitle:@"预览" rightBtnTitle:rightBtnTitle videoBtnTitle:videoSelectText then:^(NSInteger index) {
-        MSLogD(@"gh- index : %ld",(long)index);
+
         if (index == YDPreviewActionTypeLeft) {
             if (wSelf.allSelctedAssets.count <= 0) {
-                [wSelf yd_popText:@"请选择照片"];
+                NSLog(@"请选择照片");
                 return ;
             }
-            
-           id<YDCommonImgBrowserProtocol> vc = [[BHServiceManager sharedManager] createService:@protocol(YDCommonImgBrowserProtocol) withServiceName:nil shouldCache:NO];
+
+            YDCommonImgBrowser *vc = [YDCommonImgBrowser new];
             [vc configureWithTotalImgs:wSelf.allSelctedAssets selectedImgs:wSelf.allSelctedAssets toIndex:0 type:[wSelf _getAssetType] rightItemType:YDNavBarRightItemTypeSelected];
             [wSelf.navigationController pushViewController:vc animated:YES];
         }
@@ -273,7 +260,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  *  static style
  */
 - (void)msStyleInit {
-    [super msStyleInit];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -282,13 +268,18 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  *  language init
  */
 - (void)msLangInit {
-    [super msLangInit];
 }
 
 #pragma mark - life cycle not need to change nomal
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self msComInit];
+    [self msBind];
+    [self msDataInit];
+    [self msLangInit];
+    [self msStyleInit];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -303,10 +294,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    if (self.yd_isLoading) {
-        [self yd_endLoading];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -346,7 +333,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
     [self.view updateDisplayViewWithIsUP:NO];
     [self reloadAssetsAndReloadView];
-    [[YDStatisticsMgr sharedMgr] eventCircleAlbumChange];
 }
 
 - (void)_updateTitleViewPostionWithText:(NSString *)text {
@@ -360,8 +346,10 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 #pragma mark -- collectionView datasource & delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_isVideoFilter) return _selectedAlbum.videos.count;
-    return (_selectedAlbum.models.count + i1);
+#warning  -- test
+//    if (_isVideoFilter) return _selectedAlbum.videos.count;
+//    return (_selectedAlbum.models.count + i1);
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -381,30 +369,30 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
             asset= _selectedAlbum.models[index];
         }
         else {
-            asset = _selectedAlbum.videos[index];
+//            asset = _selectedAlbum.videos[index];
         }
         [cell configureWithAsset:asset then:^{
             TZAssetModel *firstAsset = wSelf.allSelctedAssets.firstObject;
             if (!asset.isSelected && firstAsset) {
                 if (wSelf.allSelctedAssets.count >= kMaxChoiceImgNum) {
-                    [wSelf yd_popText:@"最多只能够选择9张"];
+//                    [wSelf yd_popText:@"最多只能够选择9张"];
                     return ;
                 }
                 if (firstAsset.type ==TZAssetModelMediaTypeVideo){
                     if (asset.type == TZAssetModelMediaTypeVideo) {
-                        [wSelf yd_popText:@"最多选择一个视频"];
+//                        [wSelf yd_popText:@"最多选择一个视频"];
                     }
                     else if (asset.type == TZAssetModelMediaTypePhoto) {
-                        [wSelf yd_popText:MSLocalizedString(@"图片和视频不能够同时选择", nil)];
+//                        [wSelf yd_popText:MSLocalizedString(@"图片和视频不能够同时选择", nil)];
                     }
                     else {
-                        [wSelf yd_popText:MSLocalizedString(@"您已经选择了视频类型并且只可以选择一个视频", nil)];
+//                        [wSelf yd_popText:MSLocalizedString(@"您已经选择了视频类型并且只可以选择一个视频", nil)];
                     }
                     return;
                 }
                
                 if ((firstAsset.type ==TZAssetModelMediaTypePhoto) && (asset.type == TZAssetModelMediaTypeVideo)){
-                    [wSelf yd_popText:MSLocalizedString(@"图片和视频不能够同时选择", nil)];
+//                    [wSelf yd_popText:@"图片和视频不能够同时选择"];
                     return;
                 }
             }
@@ -412,11 +400,11 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
             if (asset.type ==TZAssetModelMediaTypeVideo){
                 PHAsset *phAsset =asset.asset;
                 if (phAsset.duration > kVideoMaxDuration) {
-                    [wSelf yd_popText:@"视频时长不能长于3分钟"];
+//                    [wSelf yd_popText:@"视频时长不能长于3分钟"];
                     return;
                 }
                 if (phAsset.duration <=kVideoMinDuration) {
-                    [wSelf yd_popText:@"视频时长不能小于3秒"];
+//                    [wSelf yd_popText:@"视频时长不能小于3秒"];
                     return;
                 }
             }
@@ -473,9 +461,9 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kIndex0 && !_isVideoFilter) {
+    if (indexPath.row == 0 && !_isVideoFilter) {
         if ([self isVideoSelected]) {
-            [self yd_popText:@"您已经选择了视频，暂时不支持拍照"];
+//            [self yd_popText:@"您已经选择了视频，暂时不支持拍照"];
             return;
         }
         
@@ -487,45 +475,46 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     OBTAIN_MGR(YDAlbumMgr).sourceType = YDPhotoSourceTypeAlbumDidSelected;
 
     NSInteger index = indexPath.item;
-    NSArray *allAssets = _selectedAlbum.videos;
-    if (!_isVideoFilter) {
-        index = indexPath.item -1;
-        allAssets = _selectedAlbum.models;
-    }
-    id<YDCommonImgBrowserProtocol> vc = [[BHServiceManager sharedManager] createService:@protocol(YDCommonImgBrowserProtocol) withServiceName:nil shouldCache:NO];
-    [vc configureWithTotalImgs:allAssets selectedImgs:_allSelctedAssets.copy toIndex:index type:[self _getAssetType] rightItemType:YDNavBarRightItemTypeSelected];
-    [self.navigationController pushViewController:vc animated:YES];
+//    NSArray *allAssets = _selectedAlbum.videos;
+//    if (!_isVideoFilter) {
+//        index = indexPath.item -1;
+//        allAssets = _selectedAlbum.models;
+//    }
+//
+//    YDCommonImgBrowser *vc = [YDCommonImgBrowser new];
+//    [vc configureWithTotalImgs:allAssets selectedImgs:_allSelctedAssets.copy toIndex:index type:[self _getAssetType] rightItemType:YDNavBarRightItemTypeSelected];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -- custom methods
 
 - (void)_configurePhotoTaken {
-        TZAssetAuthorizationStatus status = [TZImageManager getCameraAuthorStatus];
-        if (status == TZAssetAuthorizationStatusNotAuthorized) {
-            [self _alertCamaraInfoWhileNotAuthorized];
-            return;
-        }
-        else if (status == TZAssetAuthorizationStatusNotDetermined) {
-            [TZImageManager requestCameraAuthorization:^(TZAssetAuthorizationStatus status) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (status == TZAssetAuthorizationStatusAuthorized) {
-                        [self _toPhotoTakenVC];
-                    }else {
-                        [self _alertCamaraInfoWhileNotAuthorized];
-                    }
-                    return ;
-                });
-            }];
-        }
-        else {
+//        TZAssetAuthorizationStatus status = [TZImageManager getCameraAuthorStatus];
+//        if (status == TZAssetAuthorizationStatusNotAuthorized) {
+//            [self _alertCamaraInfoWhileNotAuthorized];
+//            return;
+//        }
+//        else if (status == TZAssetAuthorizationStatusNotDetermined) {
+//            [TZImageManager requestCameraAuthorization:^(TZAssetAuthorizationStatus status) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (status == TZAssetAuthorizationStatusAuthorized) {
+//                        [self _toPhotoTakenVC];
+//                    }else {
+//                        [self _alertCamaraInfoWhileNotAuthorized];
+//                    }
+//                    return ;
+//                });
+//            }];
+//        }
+//        else {
             [self _toPhotoTakenVC];
-        }
+//        }
 }
 
 - (void)_alertCamaraInfoWhileNotAuthorized {
-    [self yd_alertSingle:@"请打开相机权限" message:@"您已经禁止了拍照权限，请前往设置->隐私->相机授权应用拍照权限" configure:^(MMPopupItem *item) {
-        MSLogD(@"gh- 确定");
-    }];
+//    [self yd_alertSingle:@"请打开相机权限" message:@"您已经禁止了拍照权限，请前往设置->隐私->相机授权应用拍照权限" configure:^(MMPopupItem *item) {
+//        MSLogD(@"gh- 确定");
+//    }];
 }
 
 - (void)_toPhotoTakenVC {
@@ -565,17 +554,17 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 //}
 
 - (CGFloat)_titleViewWidthWithText:(NSString *)text {
-    CGFloat textW = [NSString yd_textWidthWithText:MSLocalizedString(text, nil) rSize:f18];
-    CGFloat imgW = f13;
-    CGFloat textToImgW = f6;
-    CGFloat titleViewW = textW + imgW + textToImgW;
-    return titleViewW;
+//    CGFloat textW = [NSString yd_textWidthWithText:MSLocalizedString(text, nil) rSize:18.f];
+//    CGFloat imgW = 13.f;
+//    CGFloat textToImgW = 6.f;
+//    CGFloat titleViewW = textW + imgW + textToImgW;
+//    return titleViewW;
+    return 0.f;
 }
 
 - (void)yd_popUp {
     [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ydCircleEditorBack object:nil];
-    [[YDStatisticsMgr sharedMgr] eventImgPickerback];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:ydCircleEditorBack object:nil];
 }
 
 - (void)checkAllSelectedAssets {
@@ -595,12 +584,12 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 
 - (void)reloadCollectionView {
     [self checkAllSelectedAssets];
-    dispatch_async_on_main_queue(^{
-        if (self.yd_isLoading) {
-            [self yd_endLoading];
-        }
+//    dispatch_async_on_main_queue(^{
+//        if (self.yd_isLoading) {
+//            [self yd_endLoading];
+//        }
         [self.view.collectionView reloadData];
-    });
+//    });
 }
 
 - (void)reloadTableView {
@@ -632,7 +621,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }   
 
 - (void)dealloc {
-    MSLogD(@"gh- YDImgPickerViewController dealloc");
+    NSLog(@"gh- YDImgPickerViewController dealloc");
 }
 
 @end

@@ -100,6 +100,10 @@
 
 #define YD_TEXT_DEFAULT_GREEN YD_RGB(17.f, 213.f, 156.f)
 
+#define SCREEN_WIDTH_V0 [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT_V0 [UIScreen mainScreen].bounds.size.height
+
+
 typedef void(^IntegerBlock)(NSInteger index);
 typedef void(^FloatBlock)(float value);
 typedef void(^CGFloatBlock)(CGFloat value);
@@ -115,6 +119,22 @@ typedef void(^IndexPathBlock)(NSIndexPath *indexPath);
     self.view = [[ViewClass alloc] initWithFrame:SCREEN_BOUNDS]; \
 }
 
+typedef NS_ENUM(NSInteger, YDCommingSourceType) {
+    YDCommingSourceTypeDefault =0,
+    YDCommingSourceTypeFirstEditor,  // 加号进入
+    YDCommingSourceTypeRepeatPublish,  // 重新发布
+    YDCommingSourceTypeDynamicCircle,  // web的动态圈子
+    YDCommingSourceTypeOwnerDidSelect,  // 点解图片的时候（）
+    YDCommingSourceTypeTopicRecommend,  // 话题推荐进入
+    YDCommingSourceTypeTopicTask,  // 任务系统接入
+};
 
+typedef NS_ENUM(NSInteger, YDDynimicPublishType) {
+    YDDynimicPublishTypeOnlyText =0,
+    YDDynimicPublishTypePhoto,
+    YDDynimicPublishTypeVideo,
+};
+
+static NSInteger const kMaxChoiceImgNum = 9;
 
 #endif /* GHIDefine_pch */

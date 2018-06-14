@@ -44,6 +44,7 @@
 		04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB020D1334E00E0E762 /* YDImgPickerVCTitleView.m */; };
 		04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB220D1336800E0E762 /* YDAlbumTCell.m */; };
 		04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */; };
+		04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB820D2040B00E0E762 /* YDAlbumMgr.m */; };
 		9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */; };
 		A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */; };
 		B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */; };
@@ -142,6 +143,8 @@
 		04882AB320D1336800E0E762 /* YDAlbumTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDAlbumTCell.h; sourceTree = "<group>"; };
 		04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDImgTitleIconTCell.h; sourceTree = "<group>"; };
 		04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgTitleIconTCell.m; sourceTree = "<group>"; };
+		04882AB820D2040B00E0E762 /* YDAlbumMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDAlbumMgr.m; sourceTree = "<group>"; };
+		04882AB920D2040C00E0E762 /* YDAlbumMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDAlbumMgr.h; sourceTree = "<group>"; };
 		1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +302,8 @@
 				04882A7920D128CD00E0E762 /* YDImgZoomCCell.m */,
 				04882A8520D12BE300E0E762 /* YDObtainManagerMgr.h */,
 				04882A8420D12BE200E0E762 /* YDObtainManagerMgr.m */,
+				04882AB920D2040C00E0E762 /* YDAlbumMgr.h */,
+				04882AB820D2040B00E0E762 /* YDAlbumMgr.m */,
 				04882A7420D1271700E0E762 /* GHIDefine.pch */,
 			);
 			path = lib;
@@ -567,6 +572,7 @@
 				04882A9920D1303700E0E762 /* YDPhotoHasTakeView.m in Sources */,
 				04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */,
 				04882A6520D1241000E0E762 /* YDImgPickerViewController.m in Sources */,
+				04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */,
 				04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */,
 				04882A8D20D12EC800E0E762 /* YDBrowserImgModel.m in Sources */,
 				04882A6B20D1253000E0E762 /* YDPreviewBottomView.m in Sources */,

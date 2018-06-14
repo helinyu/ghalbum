@@ -113,7 +113,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
         }
         _totalNum = totalNum;
         NSString *title =[NSString stringWithFormat:@"%ld/%ld",(_toIndex+1),totalNum];
-        CURRENT_INDEX_TEXT(title);
+//        CURRENT_INDEX_TEXT(title);
     }
     
     {
@@ -130,27 +130,27 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
         }
         
         __weak __typeof(self) weakSelf = self;
-        [self.view.bottomView configureLeftBtnTitle:MSLocalizedString(@"编辑", nil) rightBtnTitle:MSLocalizedString(rightTitle,nil) then:^(NSInteger index) {
+        [self.view.bottomView configureLeftBtnTitle:@"编辑" rightBtnTitle:rightTitle then:^(NSInteger index) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
             if (index == YDPreviewActionTypeLeft) {
                 __block UIImage *img;
                 TZAssetModel *asset = strongSelf.assets[strongSelf.currentIndex];
                 if (asset.type == TZAssetModelMediaTypeVideo) {
-                    [strongSelf yd_popText:@"亲，暂时不支持视频编辑"];
+//                    [strongSelf yd_popText:@"亲，暂时不支持视频编辑"];
                     return ;
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [strongSelf yd_isLoading];
-                });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [strongSelf yd_isLoading];
+//                });
                 [[TZImageManager manager] getOriginalPhotoWithAsset:asset.asset completion:^(UIImage *photo, NSDictionary *info) {
                     BOOL flag = [info[PHImageResultIsDegradedKey] boolValue];
                     if (!flag) {
                         img = photo;
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf yd_endLoading];
-                            WBGImageEditor *vc = [[WBGImageEditor alloc] initWithImage:[YDTools compressImageTo1M:img] delegate:strongSelf dataSource:strongSelf];
-                            [strongSelf presentViewController:vc animated:YES completion:nil];
-                            [[YDStatisticsMgr sharedMgr] eventPreviewImgEditor];
+//                            [strongSelf yd_endLoading];
+//                            WBGImageEditor *vc = [[WBGImageEditor alloc] initWithImage:[YDTools compressImageTo1M:img] delegate:strongSelf dataSource:strongSelf];
+//                            [strongSelf presentViewController:vc animated:YES completion:nil];
+//                            [[YDStatisticsMgr sharedMgr] eventPreviewImgEditor];
                         });
                     }
                 }];
@@ -159,27 +159,26 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
                 [OBTAIN_MGR(YDAlbumMgr).selectedAssets removeAllObjects];
                 [OBTAIN_MGR(YDAlbumMgr).selectedAssets addObjectsFromArray:strongSelf.selectedAssets];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                [[YDStatisticsMgr sharedMgr] eventPreviewImgFinished];
             }
         }];
         [self.view.bottomView updateRightBtncorner];
         [self.view.bottomView updateRightBtnEnable:_selectedAssets.count];
-        [[YDWatermarkMgr sharedMgr] netLoadWalkWaterMakerImgs:nil];
+//        [[YDWatermarkMgr sharedMgr] netLoadWalkWaterMakerImgs:nil];
     }
 
     if (_canEditor) {
-        [self editorInit];
+//        [self editorInit];
     }
 }
 
-- (void)msNavBarInit: (YDNavigationBar *)navBar {
-    if (_rightItemType == YDNavBarRightItemTypeSelected) {
-        UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_circle_editory_img_nomal"] style:UIBarButtonItemStylePlain target:self action:@selector(onImgSelectedAction:)];
-        navBar.topItem.rightBarButtonItem = self.view.rightBarItem;
-        navBar.topItem.title = [NSString stringWithFormat:@"%zd/%zd",_toIndex,_assets.count];
-        self.view.rightBarItem = barItem;
-    }
-}
+//- (void)msNavBarInit: (YDNavigationBar *)navBar {
+//    if (_rightItemType == YDNavBarRightItemTypeSelected) {
+//        UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_circle_editory_img_nomal"] style:UIBarButtonItemStylePlain target:self action:@selector(onImgSelectedAction:)];
+//        navBar.topItem.rightBarButtonItem = self.view.rightBarItem;
+//        navBar.topItem.title = [NSString stringWithFormat:@"%zd/%zd",_toIndex,_assets.count];
+//        self.view.rightBarItem = barItem;
+//    }
+//}
 
 - (void)updateEditorHiddenWithItem:(TZAssetModel *)currentAsset {
     if (currentAsset.type == TZAssetModelMediaTypeVideo) {
@@ -204,10 +203,10 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 
 - (void)updateRightItemWithStatus:(BOOL)status {
     if (status) {
-        self.navBar.topItem.rightBarButtonItem = self.view.rightBarItem;
+//        self.navBar.topItem.rightBarButtonItem = self.view.rightBarItem;
     }
     else {
-        self.navBar.topItem.rightBarButtonItem = nil;
+//        self.navBar.topItem.rightBarButtonItem = nil;
     }
 }
 
@@ -217,7 +216,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
         [self.view.bottomView updateRightBtnEnable:YES];
     }
     else {
-        [self.view.bottomView updateRightBtnTitlte:MSLocalizedString(@"完成", nil)];
+        [self.view.bottomView updateRightBtnTitlte:@"完成"];
         [self.view.bottomView updateRightBtnEnable:NO];
     }
 }
@@ -242,7 +241,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
     if ((_toIndex >=0) && (_totalNum >_toIndex)) {
         [self.view.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_toIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
         NSString *text =[NSString stringWithFormat:@"%ld/%ld",(_toIndex+1),_totalNum];
-        CURRENT_INDEX_TEXT(text);
+//        CURRENT_INDEX_TEXT(text);
         _toIndex = -1;
     }
     if (self.view.collectionView.visibleCells.count >0) {
@@ -313,7 +312,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
         }
         currentImg = weakCell.imgView.image;
         if (!currentImg) {
-            [wSelf yd_popText:@"当前图片类型暂时不支持保存"];
+//            [wSelf yd_popText:@"当前图片类型暂时不支持保存"];
             return;
         }
         [wSelf saveImgWithImg:currentImg];
@@ -321,7 +320,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
     
     cell.tapBlock = ^{
         if (wSelf.type <YDImgsTypeAssetNotSure) {
-            [wSelf yd_popUp];
+//            [wSelf yd_popUp];
         }
     };
     cell.tapPlayVideoblock = ^{
@@ -417,7 +416,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
             [_assets addObjectsFromArray:imgs];
             [_selectedAssets addObjectsFromArray: selectedImgs];
             if (_rightItemType != YDNavBarRightItemTypeNone) {
-                [self yd_navBarInitWithStyle:YDNavBarStyleGray];
+//                [self yd_navBarInitWithStyle:YDNavBarStyleGray];
             }
         }
             break;
@@ -464,7 +463,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
     
     _currentIndex = index;
     NSString *text = [NSString stringWithFormat:@"%ld/%ld",_currentIndex+1,denominator];
-    CURRENT_INDEX_TEXT(text);
+//    CURRENT_INDEX_TEXT(text);
     
     [self updateEditorHiddenWithItem:currentAsset];
     [self updateRightItemHiddenWithItem:currentAsset];
@@ -484,7 +483,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
         }
         else {
             [cell showImg];
-            [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
+//            [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
         }
     }
 }
@@ -492,48 +491,48 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 - (void)_playWithCurrentCell:(YDImgBrowserCCell *)cell {
     if (cell.assetItem.type == TZAssetModelMediaTypeVideo) {
         _hasPlay = YES;
-        [OBTAIN_MGR(YDCommonVideoPlayerService) playWithAsset:cell.assetItem.asset then:^(AVPlayerLayer *playerLayer,AVPlayerItemStatus status) {
-            if (status ==AVPlayerItemStatusReadyToPlay) {
-                [cell showVideoWithPlayerLayer:playerLayer];
-            }
-            else {
-                [cell showImg];
-            }
-        }];
+//        [OBTAIN_MGR(YDCommonVideoPlayerService) playWithAsset:cell.assetItem.asset then:^(AVPlayerLayer *playerLayer,AVPlayerItemStatus status) {
+//            if (status ==AVPlayerItemStatusReadyToPlay) {
+//                [cell showVideoWithPlayerLayer:playerLayer];
+//            }
+//            else {
+//                [cell showImg];
+//            }
+//        }];
     }
 }
 
 - (void)saveImgWithImg:(UIImage *)img {
     __weak typeof (self) wSelf = self;
-    MMPopupItem *saveImgItem = MMItemMake(MSLocalizedString(@"保存图片", nil), MMItemTypeNormal, ^(NSInteger index) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [[TZImageManager manager] savePhotoWithImage:img completion:^(NSError *error) {
-                dispatch_async_on_main_queue(^{
-                    if (wSelf.yd_isLoading) {
-                        [wSelf yd_endLoading];
-                    }
-                    if (error) {
-                        [wSelf yd_popText:@"保存图片失败"];
-                    }
-                    else {
-                        [wSelf yd_popText:@"保存图片成功"];
-                    }
-                });
-            }];
-        });
-        if (!wSelf.yd_isLoading) {
-            [wSelf yd_startLoading];
-        }
-    });
-    [self yd_sheetWithTitle:nil items:@[saveImgItem]];
+//    MMPopupItem *saveImgItem = MMItemMake(MSLocalizedString(@"保存图片", nil), MMItemTypeNormal, ^(NSInteger index) {
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            [[TZImageManager manager] savePhotoWithImage:img completion:^(NSError *error) {
+//                dispatch_async_on_main_queue(^{
+//                    if (wSelf.yd_isLoading) {
+//                        [wSelf yd_endLoading];
+//                    }
+//                    if (error) {
+//                        [wSelf yd_popText:@"保存图片失败"];
+//                    }
+//                    else {
+//                        [wSelf yd_popText:@"保存图片成功"];
+//                    }
+//                });
+//            }];
+//        });
+//        if (!wSelf.yd_isLoading) {
+//            [wSelf yd_startLoading];
+//        }
+//    });
+//    [self yd_sheetWithTitle:nil items:@[saveImgItem]];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (_type == YDImgsTypeAssetVideo) {
-        [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
+//        [OBTAIN_MGR(YDCommonVideoPlayerService) stop];
     }
-    MSLogD(@"gh- img browser dealloc ");
+    NSLog(@"gh- img browser dealloc ");
 }
 
 
@@ -542,7 +541,7 @@ YD_DYNAMIC_VC_VIEW(YDCommonImgBrowserView)
 - (void)onImgSelectedAction:(UIBarButtonItem *)barItem {
     TZAssetModel *currentAsset = _assets[_currentIndex];
     if (_type == YDImgsTypeAssetVideo && !currentAsset.isSelected) {
-        [self yd_popText:@"亲!当前只可以选择一个视频"];
+//        [self yd_popText:@"亲!当前只可以选择一个视频"];
         return;
     }
     
