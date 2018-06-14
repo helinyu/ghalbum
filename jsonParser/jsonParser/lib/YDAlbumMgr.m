@@ -10,7 +10,7 @@
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "TZAssetModel.h"
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 
 @interface YDAlbumMgr ()
 

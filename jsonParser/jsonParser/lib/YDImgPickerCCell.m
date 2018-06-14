@@ -8,7 +8,7 @@
 
 #import "YDImgPickerCCell.h"
 #import "TZAssetModel.h"
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 #import "UIView+YYAdd.h"
 
 @interface YDImgPickerCCell ()

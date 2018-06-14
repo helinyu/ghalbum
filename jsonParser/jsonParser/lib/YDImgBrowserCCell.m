@@ -7,7 +7,7 @@
 //
 
 #import "YDImgBrowserCCell.h"
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 #import "YDPreviewBottomView.h"
 #import "YDObtainManagerMgr.h"
 #import "UIView+YYAdd.h"

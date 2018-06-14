@@ -21,7 +21,7 @@
 //#import "YDWatermark.h"
 //#import "YDWatermarkMgr.h"
 //#import "YDCircleRootViewController.h"
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 #import "YDPhotoTakenBottomView.h"
 #import "YDPhotoTakenView.h"
 //#import "YDTools.h"

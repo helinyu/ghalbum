@@ -21,14 +21,14 @@
 #import "YDObtainManagerMgr.h"
 //#import "YDAlbumMgr.h"
 //#import "NSString+YDAdd.h"
-#import "TZImageManager.h"
+//#import "YDAlbumService.h"
 #import "TZAssetModel.h"
 #import "YDAlbumTCell.h"
 
 #import "YDPhotoTakeViewController.h"
 //#import "YDCircleEditorViewController.h"
 
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 //#import "YDCommonImgBrowserProtocol.h"
 //#import "BHServiceManager.h"
 //#import "MSDefine.h"

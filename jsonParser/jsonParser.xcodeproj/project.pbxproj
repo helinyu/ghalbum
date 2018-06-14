@@ -45,6 +45,7 @@
 		04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB220D1336800E0E762 /* YDAlbumTCell.m */; };
 		04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */; };
 		04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB820D2040B00E0E762 /* YDAlbumMgr.m */; };
+		04882AC020D26A3E00E0E762 /* YDAlbumService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882ABF20D26A3E00E0E762 /* YDAlbumService.m */; };
 		9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */; };
 		A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */; };
 		B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */; };
@@ -145,6 +146,8 @@
 		04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgTitleIconTCell.m; sourceTree = "<group>"; };
 		04882AB820D2040B00E0E762 /* YDAlbumMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDAlbumMgr.m; sourceTree = "<group>"; };
 		04882AB920D2040C00E0E762 /* YDAlbumMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDAlbumMgr.h; sourceTree = "<group>"; };
+		04882ABE20D26A3E00E0E762 /* YDAlbumService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumService.h; sourceTree = "<group>"; };
+		04882ABF20D26A3E00E0E762 /* YDAlbumService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDAlbumService.m; sourceTree = "<group>"; };
 		1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +248,7 @@
 		04882A5C20D1238600E0E762 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				04882ABD20D26A2000E0E762 /* Services */,
 				04882ABC20D2090E00E0E762 /* vc */,
 				04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */,
 				04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */,
@@ -317,6 +321,15 @@
 			path = vc;
 			sourceTree = "<group>";
 		};
+		04882ABD20D26A2000E0E762 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				04882ABE20D26A3E00E0E762 /* YDAlbumService.h */,
+				04882ABF20D26A3E00E0E762 /* YDAlbumService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		CC43ED9C8E8481391F62F313 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,7 +364,6 @@
 				04332A1E20C7C96C008885B9 /* Sources */,
 				04332A1F20C7C96C008885B9 /* Frameworks */,
 				04332A2020C7C96C008885B9 /* Resources */,
-				49FE549FCECEBF946658254E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -492,24 +504,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		49FE549FCECEBF946658254E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser-resources.sh",
-				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jsonParser/Pods-jsonParser-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AC595D11CE623B5E6B6A1900 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -579,6 +573,7 @@
 				04882A8220D1293400E0E762 /* YDBaseTableViewCell.m in Sources */,
 				04882A9920D1303700E0E762 /* YDPhotoHasTakeView.m in Sources */,
 				04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */,
+				04882AC020D26A3E00E0E762 /* YDAlbumService.m in Sources */,
 				04882A6520D1241000E0E762 /* YDImgPickerViewController.m in Sources */,
 				04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */,
 				04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */,

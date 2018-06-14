@@ -9,7 +9,7 @@
 
 #import "YDAlbumTCell.h"
 #import "TZAssetModel.h"
-#import "TZImageManager.h"
+#import "YDAlbumService.h"
 
 @interface YDAlbumTCell ()
 
