@@ -40,7 +40,8 @@ static const CGFloat kPickerBottomH = 50.f;
     
     {
         [_pickerBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(_pickerBgView.superview);
+            make.left.right.bottom.equalTo(_pickerBgView.superview);
+            make.height.mas_equalTo(DWF(kPickerBottomH) + YDBottomFix);
         }];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -56,13 +57,13 @@ static const CGFloat kPickerBottomH = 50.f;
         }];
         
         [_pickerButtomView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(_pickerButtomView.superview);
-            make.height.mas_equalTo(DWF(kPickerBottomH) +kPickerBottomH);
+            make.left.right.top.equalTo(_pickerButtomView.superview);
+            make.height.mas_equalTo(DWF(kPickerBottomH));
         }];
+        
     }
-    {
-        _collectionView.backgroundColor = YD_WHITE(0.f);
-    }
+    _collectionView.backgroundColor = YD_WHITE(0.f);
+    _pickerBgView.backgroundColor = [UIColor grayColor];
 }
 
 - (void)showViewWithIsAsset:(BOOL)isAsset {

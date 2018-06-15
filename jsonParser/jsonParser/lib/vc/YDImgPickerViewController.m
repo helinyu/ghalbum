@@ -9,8 +9,6 @@
 #import <Photos/Photos.h>
 #import "YDImgPickerViewController.h"
 #import "YDImgPickerView.h"
-//#import "YDBaseCollectionView.h"
-//#import "YDBaseTableView.h"
 
 #import "YDImgPickerCCell.h"
 #import "YDImgPickerTakeCCell.h"
@@ -154,7 +152,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     [self loadAlbumsInit];
     [self someBaseDataInit];
     [self bottomViewInit];
-    
 }
 
 - (void)someBaseDataInit {
@@ -279,11 +276,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  *  static style
  */
 - (void)msStyleInit {
-    
-#warning -- test
-    self.view.tableView.backgroundColor = [UIColor purpleColor];
-    self.view.backgroundColor = [UIColor yellowColor];
-
     [self.view showViewWithIsAsset:_showAssets];
 
 }
