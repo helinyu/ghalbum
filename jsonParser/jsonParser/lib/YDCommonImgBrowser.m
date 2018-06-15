@@ -14,7 +14,7 @@
 //#import "YDConstant.h"
 
 #import "YDBrowserImgModel.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -28,7 +28,7 @@
 #import "YDObtainManagerMgr.h"
 #import "YDCommonImgBrowserView.h"
 //#import "YDCommonVideoPlayerService.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 
 @interface YDCommonImgBrowser ()< UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 //,WBGImageEditorDelegate,WBGImageEditorDataSource

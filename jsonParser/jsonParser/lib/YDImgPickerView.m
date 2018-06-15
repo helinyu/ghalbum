@@ -7,8 +7,6 @@
 //
 
 #import "YDImgPickerView.h"
-//#import "YDBaseCollectionView.h"
-//#import "YDBaseTableView.h"
 #import "YDPickerBottomView.h"
 
 @interface YDImgPickerView ()
@@ -36,7 +34,7 @@ static const CGFloat kPickerBottomH = 50.f;
         _pickerButtomView = [YDPickerBottomView new];
         [_pickerBgView addSubview:_pickerButtomView];
 
-        _tableView = [[UITableView alloc] initWithFrame:SCREEN_BOUNDS];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         [self addSubview:_tableView];
     }
     
@@ -48,42 +46,33 @@ static const CGFloat kPickerBottomH = 50.f;
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_collectionView.superview).offset(YDTopLayoutH);
             make.left.right.equalTo(_collectionView.superview);
-            if (IS_SCREEN_SIZE_5) {
-                make.bottom.equalTo(_collectionView.superview).offset(DWF(-(kPickerBottomH +YDBottomFix)));
-            }
-            else {
-                make.bottom.equalTo(_collectionView.superview).offset(DWF(-kPickerBottomH));
-            }
+            make.bottom.equalTo(_collectionView.superview).offset(-DWF(kPickerBottomH)-YDBottomFix);
+        }];
+        
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(_tableView.superview);
+            make.top.equalTo(_tableView.superview).offset(YDTopLayoutH);
+            make.bottom.equalTo(_tableView.superview).offset(-DWF(kPickerBottomH) -YDBottomFix);
         }];
         
         [_pickerButtomView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(_pickerButtomView.superview);
-            if (IS_SCREEN_SIZE_5) {
-                make.height.mas_equalTo(DEVICE_WIDTH_OF(kPickerBottomH+YDBottomFix));
-            }
-            else {
-                make.height.mas_equalTo(DEVICE_WIDTH_OF(kPickerBottomH));
-            }
+            make.height.mas_equalTo(DWF(kPickerBottomH) +kPickerBottomH);
         }];
-    }
-    
-    {
-        _tableView.contentInset = UIEdgeInsetsMake(YDTopLayoutH, 0.f, 0.f, 0.f);
-        _tableView.contentOffset = CGPointMake(0.f, -YDTopLayoutH);
     }
     {
         _collectionView.backgroundColor = YD_WHITE(0.f);
     }
 }
 
-- (void)updateDisplayViewWithIsUP:(BOOL)flag {
-    if (flag) {
-        _tableView.hidden = NO;
-        _collectionView.hidden = YES;
-    }
-    else {
+- (void)showViewWithIsAsset:(BOOL)isAsset {
+    if (isAsset) {
         _tableView.hidden = YES;
         _collectionView.hidden = NO;
+    }
+    else {
+        _tableView.hidden = NO;
+        _collectionView.hidden = YES;
     }
 }
 

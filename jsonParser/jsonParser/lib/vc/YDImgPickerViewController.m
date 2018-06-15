@@ -21,12 +21,12 @@
 
 #import "YDObtainManagerMgr.h"
 #import "YDAlbumMgr.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 #import "YDAlbumTCell.h"
 
 #import "YDPhotoTakeViewController.h"
 
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 #import "YDCommonImgBrowser.h"
 
 #define kCellLength (SCREEN_WIDTH_V0 -(kSpaceLength * (kCCellNumOfALine -1)))/kCCellNumOfALine
@@ -37,6 +37,13 @@ typedef NS_ENUM(NSInteger, YDAssetSelectedType) {
     YDAssetSelectedTypeVideo,
 };
 
+typedef NS_ENUM(NSUInteger, YDAlbumDisplayType) {
+    YDAlbumDisplayTypeUnknown,
+    YDAlbumDisplayTypeTotal,
+    YDAlbumDisplayTypeImageOnly,
+    YDAlbumDisplayTypeVideoOnly,
+};
+
 @interface YDImgPickerViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) YDImgPickerVCTitleView *titleContentView;
@@ -44,7 +51,6 @@ typedef NS_ENUM(NSInteger, YDAssetSelectedType) {
 
 @property (nonatomic, assign) BOOL isAlbumDisplay; // 这里面是两个进行切换
 
-@property (nonatomic, strong) NSMutableArray *albums;
 @property (nonatomic, assign) BOOL isSecondMoreTime;
 
 @property (nonatomic, assign) NSInteger leafChoiceNum;
@@ -54,7 +60,22 @@ typedef NS_ENUM(NSInteger, YDAssetSelectedType) {
 @property (nonatomic, strong) TZAlbumModel *selectedAlbum;
 @property (nonatomic, strong) NSArray<TZAssetModel *> *videoAssets;
 @property (nonatomic, assign) BOOL isVideoFilter;
+
+
 @property (nonatomic, assign) BOOL canLoadVideo;
+@property (nonatomic, assign) BOOL canLoadImage;
+@property (nonatomic, assign) BOOL needFetchAssets;
+
+// 相册中分为两类型： 视频 、图像（img,git,live）
+@property (nonatomic, strong) NSArray<YDAlbumModel *> *totalAlbums;
+@property (nonatomic, strong) NSArray<YDAlbumModel *> *imageAlbums;
+@property (nonatomic, strong) NSArray<YDAlbumModel *> *videoAlbums;
+@property (nonatomic, strong) NSArray<YDAlbumModel *> *displayAlbums;
+@property (nonatomic, assign) YDAlbumDisplayType albumDisplayType;
+
+// 展示相册列表还是图片瀑布流
+@property (nonatomic, assign) BOOL showAssets; // 默认展示相册列表, NO 展示相册列表 YES： 展示相册瀑布流
+@property (nonatomic, strong) YDAlbumModel *showAssetOfTheAlbum; //展示当前瀑布流的相册对象
 
 @end
 
@@ -91,7 +112,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     
 //    [self yd_navBarInitWithStyle:YDNavBarStyleGray];
     
-    [self.view updateDisplayViewWithIsUP:_isAlbumDisplay];
+//    [self.view updateDisplayViewWithIsUP:_isAlbumDisplay];
     
     [self createViewConstraints];
 }
@@ -126,16 +147,19 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  */
 - (void)msDataInit {
     
-    self.navigationController.navigationItem.title = @"图片选择";
     self.title = @"图片选择";
+    if (self.albumDisplayType == YDAlbumDisplayTypeUnknown) {
+        self.albumDisplayType = YDAlbumDisplayTypeTotal;
+    }
     [self loadAlbumsInit];
     [self someBaseDataInit];
     [self bottomViewInit];
+    
 }
 
 - (void)someBaseDataInit {
 //    _leafChoiceNum = kMaxChoiceImgNum - _allSelctedAssets.count;
-    [self reloadCollectionView];
+    [self __reloadCollectionView];
 }
 
 - (void)loadAlbumsInit {
@@ -180,16 +204,21 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 }
 
 - (void)loadActualAlbum {
-    _albums = @[].mutableCopy;
-
-//    [[TZImageManager manager] getAllAlbums:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAlbumModel *> *models) {
-//        [_albums addObjectsFromArray:models];
-//        if (_albums.count >0) {
-//            _selectedAlbum = _albums.firstObject;
-//        }
+    
+    [OBTAIN_MGR(YDAlbumAssetService) base_getAllAlbumsWithAllowPickingVideo:_canLoadVideo allowPickingImage:_canLoadImage needFetchAssets:_needFetchAssets completion:^(NSArray<YDAlbumModel *> *albums, NSArray<YDAlbumModel *> *videoAlbums, NSArray<YDAlbumModel *> *imageAlbums) {
+        _totalAlbums = albums;
+        _videoAlbums = videoAlbums;
+        _imageAlbums = imageAlbums;
+        _displayAlbums = [self changeDisplayAlbumsWithType:_albumDisplayType];
+        [self __reloadView];
+        //        [_albums addObjectsFromArray:models];
+        //        if (_albums.count >0) {
+        //            _selectedAlbum = _albums.firstObject;
+        //        }
 //        [self reloadAssetsAndReloadView];
-//    }];
+    }];
 }
+
 
 - (void)reloadAssetsAndReloadView {
 //    [[TZImageManager manager] base_getAssetsFromFetchResult:_selectedAlbum.result allowPickingVideo:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models, NSArray<TZAssetModel *> *videos) {
@@ -230,7 +259,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
         }
         if (index == YDPreviewActionTypeVideoSelect) {
             wSelf.isVideoFilter = !wSelf.isVideoFilter;
-            [wSelf reloadCollectionView];
+            [wSelf __reloadCollectionView];
         }
     }];
     [self.view.pickerButtomView updateRightBtncorner];
@@ -251,7 +280,12 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  */
 - (void)msStyleInit {
     
-    self.view.backgroundColor = [UIColor whiteColor];
+#warning -- test
+    self.view.tableView.backgroundColor = [UIColor purpleColor];
+    self.view.backgroundColor = [UIColor yellowColor];
+
+    [self.view showViewWithIsAsset:_showAssets];
+
 }
 
 /**
@@ -276,7 +310,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     
     if (_isSecondMoreTime) {
         if (!_isAlbumDisplay) {
-            [self reloadCollectionView];
+            [self __reloadCollectionView];
         }
     }else {
         _isSecondMoreTime = YES;
@@ -299,13 +333,14 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 #pragma mark -- tableView delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _albums.count;
+    return _displayAlbums.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YDAlbumTCell *cell = [tableView dequeueReusableCellWithIdentifier:kImgPickerAblumCellTIdentifier forIndexPath:indexPath];
-    TZAlbumModel *album = _albums[indexPath.row];
-    cell.model = album;
+    YDAlbumModel *albumItem = _displayAlbums[indexPath.row];
+    cell.modelItem = albumItem;
+    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
@@ -319,9 +354,9 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 
 // delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    OBTAIN_MGR(YDAlbumMgr).selectedAlbum = _selectedAlbum = _albums[indexPath.row];
+//    OBTAIN_MGR(YDAlbumMgr).selectedAlbum = _selectedAlbum = _albums[indexPath.row];
 //    [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
-    [self.view updateDisplayViewWithIsUP:NO];
+//    [self.view updateDisplayViewWithIsUP:NO];
     [self reloadAssetsAndReloadView];
 }
 
@@ -569,12 +604,21 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
     }
 }
 
-- (void)reloadCollectionView {
+- (void)__reloadView {
+    if (_showAssets) {
+        [self __reloadCollectionView];
+    }
+    else {
+        [self __reloadTableView];
+    }
+}
+
+- (void)__reloadCollectionView {
     [self checkAllSelectedAssets];
     [self.view.collectionView reloadData];
 }
 
-- (void)reloadTableView {
+- (void)__reloadTableView {
     [self checkAllSelectedAssets];
     [self.view.tableView reloadData];
 }
@@ -600,7 +644,25 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
         }
     }
     return imgType;
-}   
+}
+
+
+- (NSArray<YDAlbumModel *> *)changeDisplayAlbumsWithType:(YDAlbumDisplayType)displayType {
+    switch (displayType) {
+        case YDAlbumDisplayTypeTotal:
+            return _totalAlbums;
+            break;
+        case YDAlbumDisplayTypeImageOnly:
+            return _imageAlbums;
+            break;
+        case YDAlbumDisplayTypeVideoOnly:
+            return _videoAlbums;
+            break;
+        default:
+            break;
+    }
+    return @[];
+}
 
 - (void)dealloc {
     NSLog(@"gh- YDImgPickerViewController dealloc");

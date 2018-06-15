@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
 
-- (void)updateDisplayViewWithIsUP:(BOOL)flag;
+- (void)showViewWithIsAsset:(BOOL)isAsset;
 
 @end

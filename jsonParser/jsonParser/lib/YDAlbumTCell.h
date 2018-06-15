@@ -7,11 +7,10 @@
 //
 
 #import "YDImgTitleIconTCell.h"
-@class TZAlbumModel;
+@class YDAlbumModel;
 
 @interface YDAlbumTCell :YDImgTitleIconTCell
 
-@property (nonatomic, strong) TZAlbumModel *model;
-//@property (weak, nonatomic) UIButton *selectedCountButton;
+@property (nonatomic, strong) YDAlbumModel *modelItem;
 
 @end

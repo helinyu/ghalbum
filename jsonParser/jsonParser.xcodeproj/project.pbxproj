@@ -45,7 +45,8 @@
 		04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB220D1336800E0E762 /* YDAlbumTCell.m */; };
 		04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */; };
 		04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB820D2040B00E0E762 /* YDAlbumMgr.m */; };
-		04882AC020D26A3E00E0E762 /* YDAlbumService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882ABF20D26A3E00E0E762 /* YDAlbumService.m */; };
+		04882AC020D26A3E00E0E762 /* YDAlbumAssetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882ABF20D26A3E00E0E762 /* YDAlbumAssetService.m */; };
+		04E37C7B20D35565008D3A9B /* YDAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37C7A20D35565008D3A9B /* YDAlbumModel.m */; };
 		9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */; };
 		A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */; };
 		B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */; };
@@ -146,8 +147,11 @@
 		04882AB620D133AD00E0E762 /* YDImgTitleIconTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDImgTitleIconTCell.m; sourceTree = "<group>"; };
 		04882AB820D2040B00E0E762 /* YDAlbumMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDAlbumMgr.m; sourceTree = "<group>"; };
 		04882AB920D2040C00E0E762 /* YDAlbumMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDAlbumMgr.h; sourceTree = "<group>"; };
-		04882ABE20D26A3E00E0E762 /* YDAlbumService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumService.h; sourceTree = "<group>"; };
-		04882ABF20D26A3E00E0E762 /* YDAlbumService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDAlbumService.m; sourceTree = "<group>"; };
+		04882ABE20D26A3E00E0E762 /* YDAlbumAssetService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumAssetService.h; sourceTree = "<group>"; };
+		04882ABF20D26A3E00E0E762 /* YDAlbumAssetService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDAlbumAssetService.m; sourceTree = "<group>"; };
+		04E37C7920D35565008D3A9B /* YDAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumModel.h; sourceTree = "<group>"; };
+		04E37C7A20D35565008D3A9B /* YDAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDAlbumModel.m; sourceTree = "<group>"; };
+		04E37C7F20D35B06008D3A9B /* YDAlbumAssetProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumAssetProtocol.h; sourceTree = "<group>"; };
 		1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +252,7 @@
 		04882A5C20D1238600E0E762 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				04E37C7820D3554C008D3A9B /* Models */,
 				04882ABD20D26A2000E0E762 /* Services */,
 				04882ABC20D2090E00E0E762 /* vc */,
 				04882AB520D133AC00E0E762 /* YDImgTitleIconTCell.h */,
@@ -324,10 +329,20 @@
 		04882ABD20D26A2000E0E762 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				04882ABE20D26A3E00E0E762 /* YDAlbumService.h */,
-				04882ABF20D26A3E00E0E762 /* YDAlbumService.m */,
+				04882ABE20D26A3E00E0E762 /* YDAlbumAssetService.h */,
+				04882ABF20D26A3E00E0E762 /* YDAlbumAssetService.m */,
+				04E37C7F20D35B06008D3A9B /* YDAlbumAssetProtocol.h */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		04E37C7820D3554C008D3A9B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04E37C7920D35565008D3A9B /* YDAlbumModel.h */,
+				04E37C7A20D35565008D3A9B /* YDAlbumModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CC43ED9C8E8481391F62F313 /* Pods */ = {
@@ -561,6 +576,7 @@
 				04882A9620D12FF000E0E762 /* YDPhotoTakenView.m in Sources */,
 				04882AA520D131E400E0E762 /* YDImgIconCCell.m in Sources */,
 				04882A7A20D128CD00E0E762 /* YDImgZoomCCell.m in Sources */,
+				04E37C7B20D35565008D3A9B /* YDAlbumModel.m in Sources */,
 				04882A5F20D1239200E0E762 /* YDCommonImgBrowser.m in Sources */,
 				04882A9F20D1318E00E0E762 /* YDImgPickerCCell.m in Sources */,
 				04882A8920D12D4700E0E762 /* UIView+YYAdd.m in Sources */,
@@ -573,7 +589,7 @@
 				04882A8220D1293400E0E762 /* YDBaseTableViewCell.m in Sources */,
 				04882A9920D1303700E0E762 /* YDPhotoHasTakeView.m in Sources */,
 				04882AB120D1334E00E0E762 /* YDImgPickerVCTitleView.m in Sources */,
-				04882AC020D26A3E00E0E762 /* YDAlbumService.m in Sources */,
+				04882AC020D26A3E00E0E762 /* YDAlbumAssetService.m in Sources */,
 				04882A6520D1241000E0E762 /* YDImgPickerViewController.m in Sources */,
 				04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */,
 				04882AB720D133AE00E0E762 /* YDImgTitleIconTCell.m in Sources */,

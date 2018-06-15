@@ -18,6 +18,7 @@
 @end
 
 #import "YDAlbumMgr.h"
+#import "YDAlbumAssetService.h"
 
 //#import "YDCircleEditorMgr.h"
 //#import "YDCircleDetailMgr.h"

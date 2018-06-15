@@ -8,7 +8,7 @@
 
 #import "YDAlbumMgr.h"
 #import <Photos/Photos.h>
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 
 @interface YDAlbumMgr ()
 

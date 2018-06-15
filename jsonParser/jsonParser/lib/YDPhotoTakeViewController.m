@@ -19,7 +19,7 @@
 //#import "YDWatermark.h"
 //#import "YDWatermarkMgr.h"
 //#import "YDCircleRootViewController.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 #import "YDPhotoTakenBottomView.h"
 #import "YDPhotoTakenView.h"
 

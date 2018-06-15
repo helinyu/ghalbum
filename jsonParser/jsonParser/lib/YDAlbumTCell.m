@@ -9,18 +9,19 @@
 
 #import <Photos/Photos.h>
 #import "YDAlbumTCell.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
+#import "YDObtainManagerMgr.h"
 
 @interface YDAlbumTCell ()
 
 @property (nonatomic, strong) UILabel *assetNumLabel;
-//@property (nonatomic, strong) UILabel *selectedNumLabel;
+@property (nonatomic, strong) UILabel *selectedNumLabel;
 
 @end
 
-//static const CGFloat kSelectNumLabelRightSpace = 12.f;
-//static const CGFloat kSelectNumLabelLength = 30.f;
 static const CGFloat kAssetNumLabelLeftSpace = 12.f;
+static const CGFloat kSelectNumLabelRightSpace = 12.f;
+static const CGFloat kSelectNumLabelLength = 30.f;
 
 @implementation YDAlbumTCell
 
@@ -50,33 +51,42 @@ static const CGFloat kAssetNumLabelLeftSpace = 12.f;
     }
     
     {
-//        _selectedNumLabel = [UILabel new];
-//        [self.contentView addSubview:_selectedNumLabel];
-//        _selectedNumLabel.backgroundColor = YDC_G2;
-//        _selectedNumLabel.textColor = YD_WHITE(1.f);
-//
-//        [_selectedNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(self.iconImgView.mas_left).offset(DWF(-12.f));
-//            make.centerY.equalTo(self.contentView);
-//            make.height.width.mas_equalTo(kSelectNumLabelLength);
-//        }];
-        
-//        _selectedNumLabel.layer.cornerRadius = DWF(kSelectNumLabelLength/2.f);
-//        _selectedNumLabel.layer.masksToBounds = YES;
-//        _selectedNumLabel.textAlignment = NSTextAlignmentCenter;
+        _selectedNumLabel = [UILabel new];
+        [self.contentView addSubview:_selectedNumLabel];
+        _selectedNumLabel.backgroundColor = YDC_G2;
+        _selectedNumLabel.textColor = YD_WHITE(1.f);
 
-//        _selectedNumLabel.text = @"9";
+        [_selectedNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.iconImgView.mas_left).offset(DWF(-12.f));
+            make.centerY.equalTo(self.contentView);
+            make.height.width.mas_equalTo(kSelectNumLabelLength);
+        }];
+        
+        _selectedNumLabel.layer.cornerRadius = DWF(kSelectNumLabelLength/2.f);
+        _selectedNumLabel.layer.masksToBounds = YES;
+        _selectedNumLabel.textAlignment = NSTextAlignmentCenter;
+        _selectedNumLabel.text = @__STRING(0);
     }
+    
+    
 }
 
-- (void)setModel:(TZAlbumModel *)model {
-    _model = model;
-//    self.titleLabel.text = model.name;
-//    self.assetNumLabel.text = [NSString stringWithFormat:@"%zd",model.count];
-//    
-//    [[TZImageManager manager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
-//        self.imgView.image = postImage;
-//    }];
+- (void)setModelItem:(YDAlbumModel *)modelItem {
+    _modelItem = modelItem;
+    self.titleLabel.text = modelItem.name;
+    _assetNumLabel.text = [NSString stringWithFormat:@"%zd",modelItem.count];
+    if (modelItem.selectedCount >0) {
+        _selectedNumLabel.text = [NSString stringWithFormat:@"%zd",modelItem.selectedCount];
+        _selectedNumLabel.hidden = NO;
+    }
+    else {
+        _selectedNumLabel.text = nil;
+        _selectedNumLabel.hidden = YES;
+    }
+  
+    [OBTAIN_MGR(YDAlbumAssetService) getDefaultCoverImageWithAlbumItem:modelItem then:^(UIImage * coverImage) {
+        self.imgView.image = coverImage;
+    }];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Photos/Photos.h>
 #import "YDImgPickerCCell.h"
-#import "YDAlbumService.h"
+#import "YDAlbumAssetService.h"
 #import "UIView+YYAdd.h"
 
 @interface YDImgPickerCCell ()
