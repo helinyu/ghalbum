@@ -41,4 +41,9 @@
 - (UIImage *)fixImageOrientation:(UIImage *)aImage;
 - (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)size;
 
+#pragma mark - get the asset from album
+
+- (void)base_getAssetWithAlbum:(YDAlbumModel *)album allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage then:(void (^)(NSArray<PHAsset *> * totals, NSArray<PHAsset *> * images, NSArray<PHAsset *> *videos))then;
+- (void)getAssetFromFetchResult:(id)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage then:(void (^)(PHAsset *model))then;
+
 @end

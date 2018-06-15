@@ -47,6 +47,7 @@
 		04882ABA20D2040C00E0E762 /* YDAlbumMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882AB820D2040B00E0E762 /* YDAlbumMgr.m */; };
 		04882AC020D26A3E00E0E762 /* YDAlbumAssetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04882ABF20D26A3E00E0E762 /* YDAlbumAssetService.m */; };
 		04E37C7B20D35565008D3A9B /* YDAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E37C7A20D35565008D3A9B /* YDAlbumModel.m */; };
+		04E5BDD820D3CA0A00E0FBF9 /* PHAsset+YdAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5BDD720D3CA0A00E0FBF9 /* PHAsset+YdAdd.m */; };
 		9F66D37583D5F5E76B88F76C /* libPods-jsonParserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD2CB1B51910121E6B6E430 /* libPods-jsonParserTests.a */; };
 		A0005AD371F40126DEAC7C1E /* libPods-jsonParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */; };
 		B459E23E41C5A95BF15CE986 /* libPods-jsonParserUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */; };
@@ -152,6 +153,9 @@
 		04E37C7920D35565008D3A9B /* YDAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumModel.h; sourceTree = "<group>"; };
 		04E37C7A20D35565008D3A9B /* YDAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDAlbumModel.m; sourceTree = "<group>"; };
 		04E37C7F20D35B06008D3A9B /* YDAlbumAssetProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDAlbumAssetProtocol.h; sourceTree = "<group>"; };
+		04E5BDD620D3CA0A00E0FBF9 /* PHAsset+YdAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+YdAdd.h"; sourceTree = "<group>"; };
+		04E5BDD720D3CA0A00E0FBF9 /* PHAsset+YdAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+YdAdd.m"; sourceTree = "<group>"; };
+		04E5BDD920D3D38300E0FBF9 /* YDCategoriesMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDCategoriesMacro.h; sourceTree = "<group>"; };
 		1860D4AF572D4794C7D21397 /* Pods-jsonParserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jsonParserUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-jsonParserUITests/Pods-jsonParserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B90C34DA17A12E03F5DD770 /* libPods-jsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3400005BBDD5BB3F49F98769 /* libPods-jsonParserUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jsonParserUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +345,9 @@
 			children = (
 				04E37C7920D35565008D3A9B /* YDAlbumModel.h */,
 				04E37C7A20D35565008D3A9B /* YDAlbumModel.m */,
+				04E5BDD620D3CA0A00E0FBF9 /* PHAsset+YdAdd.h */,
+				04E5BDD720D3CA0A00E0FBF9 /* PHAsset+YdAdd.m */,
+				04E5BDD920D3D38300E0FBF9 /* YDCategoriesMacro.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -567,6 +574,7 @@
 				04882A8620D12BE300E0E762 /* YDObtainManagerMgr.m in Sources */,
 				04882AA220D131BB00E0E762 /* YDPickerBottomView.m in Sources */,
 				04332A2A20C7C96C008885B9 /* ViewController.m in Sources */,
+				04E5BDD820D3CA0A00E0FBF9 /* PHAsset+YdAdd.m in Sources */,
 				04882AAE20D132E600E0E762 /* YDComImgDescCCell.m in Sources */,
 				04882A6820D124DF00E0E762 /* YDCommonImgBrowserView.m in Sources */,
 				04882AB420D1336900E0E762 /* YDAlbumTCell.m in Sources */,

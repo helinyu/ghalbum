@@ -70,6 +70,7 @@ static const CGFloat kPickerBottomH = 50.f;
     if (isAsset) {
         _tableView.hidden = YES;
         _collectionView.hidden = NO;
+        _collectionView.backgroundColor = [UIColor redColor];
     }
     else {
         _tableView.hidden = NO;

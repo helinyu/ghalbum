@@ -8,6 +8,7 @@
 
 #import <Photos/Photos.h>
 #import "YDImgPickerViewController.h"
+#import "YDPhotoTakeViewController.h"
 #import "YDImgPickerView.h"
 
 #import "YDImgPickerCCell.h"
@@ -22,10 +23,10 @@
 #import "YDAlbumAssetService.h"
 #import "YDAlbumTCell.h"
 
-#import "YDPhotoTakeViewController.h"
-
 #import "YDAlbumAssetService.h"
 #import "YDCommonImgBrowser.h"
+
+#import "YDCategoriesMacro.h"
 
 #define kCellLength (SCREEN_WIDTH_V0 -(kSpaceLength * (kCCellNumOfALine -1)))/kCCellNumOfALine
 
@@ -59,7 +60,6 @@ typedef NS_ENUM(NSUInteger, YDAlbumDisplayType) {
 @property (nonatomic, strong) NSArray<TZAssetModel *> *videoAssets;
 @property (nonatomic, assign) BOOL isVideoFilter;
 
-
 @property (nonatomic, assign) BOOL canLoadVideo;
 @property (nonatomic, assign) BOOL canLoadImage;
 @property (nonatomic, assign) BOOL needFetchAssets;
@@ -74,6 +74,11 @@ typedef NS_ENUM(NSUInteger, YDAlbumDisplayType) {
 // 展示相册列表还是图片瀑布流
 @property (nonatomic, assign) BOOL showAssets; // 默认展示相册列表, NO 展示相册列表 YES： 展示相册瀑布流
 @property (nonatomic, strong) YDAlbumModel *showAssetOfTheAlbum; //展示当前瀑布流的相册对象
+
+// asset
+@property (nonatomic, strong) NSArray<PHAsset *> *currentTotalAssets;
+@property (nonatomic, strong) NSArray<PHAsset *> *currentVideoAssets;
+@property (nonatomic, strong) NSArray<PHAsset *> *currentImageAssets;
 
 @end
 
@@ -200,6 +205,8 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 //    }
 }
 
+// 这个是只有在  YDAlbumAssetTypeAlbumAssetBoth, // 在一个vc里面展示两种切换
+// YDAlbumAssetTypeAlbumListOnly, //只是展示相册 才会加载
 - (void)loadActualAlbum {
     
     [OBTAIN_MGR(YDAlbumAssetService) base_getAllAlbumsWithAllowPickingVideo:_canLoadVideo allowPickingImage:_canLoadImage needFetchAssets:_needFetchAssets completion:^(NSArray<YDAlbumModel *> *albums, NSArray<YDAlbumModel *> *videoAlbums, NSArray<YDAlbumModel *> *imageAlbums) {
@@ -207,7 +214,26 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
         _videoAlbums = videoAlbums;
         _imageAlbums = imageAlbums;
         _displayAlbums = [self changeDisplayAlbumsWithType:_albumDisplayType];
-        [self __reloadView];
+        if (_showAssets) {
+        //load camera roll
+            if (_totalAlbums.count <=0) {
+                [self __reloadView];
+            }
+            else {
+                YDAlbumModel *cameraAlbum = _totalAlbums.firstObject;
+                [OBTAIN_MGR(YDAlbumAssetService) base_getAssetWithAlbum:cameraAlbum allowPickingVideo:_canLoadVideo allowPickingImage:_canLoadImage then:^(NSArray<PHAsset *> *totals, NSArray<PHAsset *> *images, NSArray<PHAsset *> *videos) {
+                    dispatch_async_on_main_queue(^{
+                        _currentTotalAssets = totals;
+                        _currentImageAssets = images;
+                        _currentVideoAssets = videos;
+                        [self __reloadView];
+                    });
+                }];
+            }
+        }
+        else {
+            [self __reloadView];
+        }
         //        [_albums addObjectsFromArray:models];
         //        if (_albums.count >0) {
         //            _selectedAlbum = _albums.firstObject;
@@ -215,7 +241,6 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 //        [self reloadAssetsAndReloadView];
     }];
 }
-
 
 - (void)reloadAssetsAndReloadView {
 //    [[TZImageManager manager] base_getAssetsFromFetchResult:_selectedAlbum.result allowPickingVideo:_canLoadVideo allowPickingImage:YES completion:^(NSArray<TZAssetModel *> *models, NSArray<TZAssetModel *> *videos) {
@@ -277,7 +302,8 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
  */
 - (void)msStyleInit {
     [self.view showViewWithIsAsset:_showAssets];
-
+    
+    self.view.backgroundColor = [UIColor redColor];
 }
 
 /**
@@ -346,10 +372,33 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 
 // delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    OBTAIN_MGR(YDAlbumMgr).selectedAlbum = _selectedAlbum = _albums[indexPath.row];
-//    [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
-//    [self.view updateDisplayViewWithIsUP:NO];
-    [self reloadAssetsAndReloadView];
+    switch (_albumAssetType) {
+        case YDAlbumAssetTypeAlbumAssetBoth:
+        {
+            //    OBTAIN_MGR(YDAlbumMgr).selectedAlbum = _selectedAlbum = _albums[indexPath.row];
+            //    [self _updateTitleViewPostionWithText:OBTAIN_MGR(YDAlbumMgr).selectedAlbum.name];
+            //    [self.view updateDisplayViewWithIsUP:NO];
+            [self reloadAssetsAndReloadView];
+        }
+            break;
+        case YDAlbumAssetTypeAlbumListOnly:
+        {
+            YDImgPickerViewController *vc = [YDImgPickerViewController new];
+            vc.view.backgroundColor = [UIColor redColor];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case YDAlbumAssetTypeAssetFlowOnly:
+        {
+            NSLog(@"gh- 展示的内容不正确");
+        }
+            break;
+        default:
+        {
+            NSLog(@"gh- 请设置展示样式的类型");
+        }
+            break;
+    }
 }
 
 - (void)_updateTitleViewPostionWithText:(NSString *)text {
@@ -366,7 +415,7 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
 #warning  -- test
 //    if (_isVideoFilter) return _selectedAlbum.videos.count;
 //    return (_selectedAlbum.models.count + i1);
-    return 0;
+    return _currentTotalAssets.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -654,6 +703,26 @@ YD_DYNAMIC_VC_VIEW([YDImgPickerView class]);
             break;
     }
     return @[];
+}
+
+- (void)configureVariables {
+    switch (_albumAssetType) {
+        case YDAlbumAssetTypeAlbumAssetBoth: {
+            _showAssets = YES;
+        }
+            break;
+        case YDAlbumAssetTypeAssetFlowOnly: {
+            _showAssets = YES;
+        }
+            break;
+        case YDAlbumAssetTypeAlbumListOnly: {
+            _showAssets = NO;
+        }
+            break;
+        default:
+            break;
+    }
+    [self.view showViewWithIsAsset:_showAssets];
 }
 
 - (void)dealloc {

@@ -91,6 +91,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YDImgPickerViewController *vc = [YDImgPickerViewController new];
     [vc configureSelectedAssets:@[] then:nil];
+    vc.albumAssetType = YDAlbumAssetTypeAlbumAssetBoth;
+    [vc configureVariables];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

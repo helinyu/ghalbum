@@ -9,7 +9,7 @@
 #import "YDAlbumAssetService.h"
 #import "YDAlbumModel.h"
 #import <Photos/Photos.h>
-
+#import "PHAsset+YdAdd.h"
 
 @implementation YDAlbumAssetService
 
@@ -254,5 +254,34 @@
     }
 }
 
+#pragma mark - get the asset from album
+
+- (void)base_getAssetWithAlbum:(YDAlbumModel *)album allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage then:(void (^)(NSArray<PHAsset *> * totals, NSArray<PHAsset *> * images, NSArray<PHAsset *> *videos))then {
+    NSMutableArray *mTotals = @[].mutableCopy;
+    NSMutableArray *mImages = @[].mutableCopy;
+    NSMutableArray *mVideos = @[].mutableCopy;
+        PHFetchResult *fetchResult = (PHFetchResult *)album.result;
+    [fetchResult enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+    }];
+    [fetchResult enumerateObjectsUsingBlock:^(PHAsset  *_Nonnull asset, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (asset) {
+            YDPHAssetType assetType = [asset fetchAssetType];
+            asset.assetTypeObj = @(assetType);
+            [mTotals addObject:asset];
+            if (assetType == YDPHAssetTypeImage || assetType == YDPHAssetTypeLiveImage || assetType == YDPHAssetTypeImageGif) {
+                [mImages addObject:asset];
+            }
+            if (assetType == YDPHAssetTypeVideo) {
+                [mVideos addObject:asset];
+            }
+        }
+    }];
+    !then? :then(mTotals ,mImages ,mVideos);
+}
+
+- (void)getAssetFromFetchResult:(id)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(PHAsset *model))completion {
+    
+}
 
 @end

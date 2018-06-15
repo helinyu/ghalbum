@@ -46,6 +46,7 @@
 #define GE_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8
 #define BEFORE_IOS9 [[[UIDevice currentDevice] systemVersion] floatValue] < 9
 #define AFTER_IOS9 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9
+#define AFTER_IOS9_1 [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.1
 #define BEFORE_IOS10 [[[UIDevice currentDevice] systemVersion] floatValue] < 10
 #define AFTER_IOS10 [[[UIDevice currentDevice] systemVersion] floatValue] >= 10
 #define AFTER_IOS11 [[[UIDevice currentDevice] systemVersion] floatValue] >= 11
